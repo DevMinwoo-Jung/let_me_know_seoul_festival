@@ -1,29 +1,16 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-export default function Example(props) {
+export default function Example({DataType}:any) {
 
-  const [ex, setEx] = useState([]);
-  const [loading, setLoading] = useState(true);
+  console.log(DataType)
 
-  useEffect(() => {
-
-    if(props !== null){
-      setEx([...props.props.value]);
-      setLoading(false);
-    }
-
-  }, [])
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+  const test = JSON.parse(DataType.value).culturalEventInfo.row;
 
   return (
     <div>
       {
-        ex && ex.map((ele) => {
+        test && test.map((ele: any) => {
           
           const { CODENAME, GUNAME, TITLE, DATE, PLACE, ORG_NAME } = ele;
           
