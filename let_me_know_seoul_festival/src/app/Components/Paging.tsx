@@ -11,13 +11,15 @@ interface PaginProps {
 
 export default function Paging({DataType}:any) {
   
-  const pagingTest = JSON.parse(DataType.value).culturalEventInfo.list_total_count;
+  const pagingTest = DataType?.value 
+  ? JSON.parse(DataType.value)?.culturalEventInfo?.list_total_count
+  : null;
+  
   const pagingNum = 5;
   const [pageNumber, setpageNumber] = useState<any>([1,2,3,4,5]);
   const [currentPage, setCurrnetPage] = useState();
   
   useEffect(()=>{
-    console.log(pageNumber, pagingTest)
     if(pagingNum < pagingTest) {
  
     }
@@ -47,9 +49,8 @@ export default function Paging({DataType}:any) {
       <MdArrowBackIos/>
       {
         pageNumber && pageNumber.map((ele: any, index: number)=> {
-          console.log(ele, index)
           return (
-            <span className='mx-2'>{(index+1)}</span>
+            <span key={index} className='mx-2'>{(index+1)}</span>
           )
         })
       }
