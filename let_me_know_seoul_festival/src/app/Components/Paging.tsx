@@ -17,7 +17,7 @@ export default function Paging({DataType}:any) {
   
   const pagingNum = 5;
   const [pageNumber, setpageNumber] = useState<any>([]);
-  const [currentPage, setCurrnetPage] = useState();
+  const [currentPage, setCurrnetPage] = useState(1);
   
   useEffect(() => {
     if (totalCount !== null) {

@@ -11,7 +11,7 @@ export default function FestivalItems({DataType}:any) {
   : null;
 
   return (
-    <div className='max-w-screen-2xl m-auto grid grid-rows-5 grid-flow-col gap-4'>
+    <div className='grid grid-rows-4 grid-flow-col gap-5 p-4'>
       {
         test && test.map((ele: any) => {
           
@@ -19,14 +19,18 @@ export default function FestivalItems({DataType}:any) {
           
           return (
           <>   
-              <div className='w-96 h-96 m-4'>
-                <Link  className='w-64 h-72' href={`/Detail/${TITLE}`} key={MAIN_IMG}>
-                <Image className='cursor-pointer' src={MAIN_IMG} alt={MAIN_IMG} width={256} height={288}/>
+              <div className='w-96 h-96 mt-6 mb-6'>
+                <Link  className='w-52 h-60' href={`/Detail/${TITLE}`} key={MAIN_IMG}>
+                <Image className='m-auto cursor-pointer' src={MAIN_IMG} alt={MAIN_IMG} width={208} height={240}/>
                 </Link>
-                <span>{CODENAME}</span>
-                <span>{GUNAME}</span>
-                <span>{TITLE}</span>
-                <span>{DATE}</span>
+                <div>
+                  <span>{CODENAME}</span>
+                  <span>{GUNAME}</span>
+                </div>
+                <div>
+                  <span>{TITLE}</span>
+                  <span>{DATE}</span>
+                </div>
               </div>
           </>
           )
