@@ -11,23 +11,31 @@ interface PaginProps {
 
 export default function Paging({DataType}:any) {
   
-  const pagingTest = DataType?.value 
+  const totalCount = DataType?.value 
   ? JSON.parse(DataType.value)?.culturalEventInfo?.list_total_count
   : null;
   
   const pagingNum = 5;
-  const [pageNumber, setpageNumber] = useState<any>([1,2,3,4,5]);
+  const [pageNumber, setpageNumber] = useState<any>([]);
   const [currentPage, setCurrnetPage] = useState();
   
-  useEffect(()=>{
-    if(pagingNum < pagingTest) {
- 
-    }
+  useEffect(() => {
+    if (totalCount !== null) {
+      const pageItemCount = pagingNum * 25;
+      const totalPageCount = Math.ceil(totalCount / pageItemCount);
 
-  }, [pageNumber])
+      if (pagingNum < totalPageCount) {
+        const emptyArray = new Array(pagingNum).fill(null).map((_, index) => index + 1);
+        setpageNumber(emptyArray);
+      } else {
+        const emptyArray = new Array(totalPageCount).fill(null).map((_, index) => index + 1);
+        setpageNumber(emptyArray);
+      }
+    }
+  }, [totalCount, pagingNum]);
 
   const setLastPage = () => {
-    setpageNumber(pagingTest)
+    setpageNumber(totalCount)
   }
 
   const setFirstPage = () => {
@@ -44,16 +52,14 @@ export default function Paging({DataType}:any) {
 
 
   return (
-    <div className='flex leading-4'>
+    <div className='flex leading-4 justify-center mt-12'>
       <BiFirstPage onClick={setFirstPage}/>
       <MdArrowBackIos/>
       {
-        pageNumber && pageNumber.map((ele: any, index: number)=> {
-          return (
+        pageNumber.map((ele: any, index: number) => (
             <span key={index} className='mx-2'>{(index+1)}</span>
-          )
-        })
-      }
+        )
+      )}
       <MdArrowForwardIos/>
       <BiLastPage onClick={setLastPage}/>
     </div>
