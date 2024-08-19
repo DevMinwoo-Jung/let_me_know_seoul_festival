@@ -16,14 +16,14 @@ export default function Paging({DataType}:any) {
   : null;
   
   const pagingNum = 5;
-  const [pageNumber, setpageNumber] = useState<any>([]);
+  const pagePerSize = 25;
+  const [pageNumber, setpageNumber] = useState<[] | number | number[]>([]);
   const [currentPage, setCurrnetPage] = useState(1);
-  
+  const pageItemCount = pagingNum * pagePerSize;
+  const totalPageCount = Math.ceil(totalCount / pageItemCount);
+
   useEffect(() => {
     if (totalCount !== null) {
-      const pageItemCount = pagingNum * 25;
-      const totalPageCount = Math.ceil(totalCount / pageItemCount);
-
       if (pagingNum < totalPageCount) {
         const emptyArray = new Array(pagingNum).fill(null).map((_, index) => index + 1);
         setpageNumber(emptyArray);
@@ -32,10 +32,10 @@ export default function Paging({DataType}:any) {
         setpageNumber(emptyArray);
       }
     }
-  }, [totalCount, pagingNum]);
+  }, [totalCount, totalPageCount]);
 
   const setLastPage = () => {
-    setpageNumber(totalCount)
+    setpageNumber(totalPageCount)
   }
 
   const setFirstPage = () => {
@@ -47,21 +47,25 @@ export default function Paging({DataType}:any) {
   }
 
   const setNextPage = () => {
-    setpageNumber(2);
+    setpageNumber(currentPage + pagingNum);
   }
 
 
   return (
-    <div className='flex leading-4 justify-center mt-12'>
-      <BiFirstPage onClick={setFirstPage}/>
-      <MdArrowBackIos/>
-      {
-        pageNumber.map((ele: any, index: number) => (
-            <span key={index} className='mx-2'>{(index+1)}</span>
-        )
-      )}
-      <MdArrowForwardIos/>
-      <BiLastPage onClick={setLastPage}/>
-    </div>
+    <>
+      <div className='flex leading-4 justify-center mt-12'>
+        <BiFirstPage className='cursor-pointer' onClick={setFirstPage}/>
+        <MdArrowBackIos className='cursor-pointer' onClick={setPrevPage}/>
+        {
+          pageNumber.map((ele: any, index: number) => (
+              currentPage === (index + 1) 
+              ? <><span key={index} className='mx-2 font-extrabold cursor-pointer'>{(index+1)}</span></> 
+              : <><span key={index} className='mx-2 cursor-pointer'>{(index+1)}</span></>
+          )
+        )}
+        <MdArrowForwardIos className='cursor-pointer' onClick={setNextPage}/>
+        <BiLastPage className='cursor-pointer' onClick={setLastPage}/>
+      </div>
+    </>
   )
 }
