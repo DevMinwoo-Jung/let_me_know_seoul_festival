@@ -13,46 +13,47 @@ export default function Paging({DataType}:any) {
   
   const pagingNum = 5;
   const pagePerSize = 25;
-  const [pageNumber, setpageNumber] = useState<any>([]);
+  const [pageArray, setPageArray] = useState<any>([]);
   const [currentPage, setCurrnetPage] = useState(1);
   const pageItemCount = pagingNum * pagePerSize;
   const totalPageCount = Math.ceil(totalCount / pageItemCount);
-
+  
   useEffect(() => {
-    if (totalCount !== null) {
-      if (pagingNum < totalPageCount) {
-        const emptyArray = new Array(pagingNum).fill(null).map((_, index) => index + 1);
-        setpageNumber(emptyArray);
+    if(pageArray.includes(currentPage)){
+      return;
+    }
+
+    if (totalCount > 0) {
+      if(totalPageCount <= 5){
+        setPageArray([...[], ... Array.from({ length: totalPageCount }, (_, i) => currentPage + i)]);
       } else {
-        const emptyArray = new Array(totalPageCount).fill(null).map((_, index) => index + 1);
-        setpageNumber(emptyArray);
+        setPageArray([...[], ... Array.from({ length: pagingNum }, (_, i) => currentPage + i)]);
       }
     }
-  }, [totalCount, totalPageCount]);
+  }, [currentPage, totalCount, totalPageCount,pageArray]);
 
   const setLastPage = () => {
-    setpageNumber(totalPageCount)
+    setCurrnetPage(totalPageCount - 4);
   }
 
-  const setFirstPage = (event:any) => {
-    setCurrnetPage(event.current.value);
+  const setFirstPage = () => {
+    setCurrnetPage(1);
   }
 
   const setPrevPage = () => {
     if(currentPage - pagingNum > 0){
-      setCurrnetPage(currentPage - pagingNum);
+      setCurrnetPage(pageArray[0]   - pagingNum);
     }
   }
 
   const setNextPage = () => {
     if(currentPage + pagingNum < totalPageCount){
-      setCurrnetPage(currentPage + pagingNum);
+      setCurrnetPage(pageArray[0] + pagingNum);
     }
   }
 
   const setCurrnetPageNumber = (event:any) => {
     setCurrnetPage(() => Number(event.target.innerHTML));
-    console.log(currentPage);
   }
 
 
@@ -62,12 +63,12 @@ export default function Paging({DataType}:any) {
         <BiFirstPage className='cursor-pointer' onClick={setFirstPage}/>
         <MdArrowBackIos className='cursor-pointer' onClick={setPrevPage}/>
         {
-          pageNumber.map((ele: any, index: number) => (
-              currentPage === (index + 1) 
-              ? <><span key={index} className='mx-2 font-extrabold cursor-pointer' onClick={setCurrnetPageNumber}>{(index+1)}</span></> 
-              : <><span key={index} className='mx-2 cursor-pointer' onClick={setCurrnetPageNumber}>{(index+1)}</span></>
-          )
-        )}
+          pageArray.map((ele: number, index: number) => (
+            currentPage === ele 
+              ? <span key={index} className='mx-2 font-extrabold cursor-pointer' onClick={setCurrnetPageNumber}>{ele}</span>
+              : <span key={index} className='mx-2 cursor-pointer' onClick={setCurrnetPageNumber}>{ele}</span>
+          ))
+        }
         <MdArrowForwardIos className='cursor-pointer' onClick={setNextPage}/>
         <BiLastPage className='cursor-pointer' onClick={setLastPage}/>
       </div>
