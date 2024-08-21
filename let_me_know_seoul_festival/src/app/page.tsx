@@ -4,13 +4,15 @@ import Paging from "./Components/Paging";
 
 export default function Home() {
 
-  const test = fetchExample();
+  // const test = fetchExample();
   
+  // console.log(test);
+
   return (
     <>
       <main className="block min-h-screen">
-        <FestivalItems DataType={test} />
-        <Paging DataType={test} />
+        <FestivalItems />
+        {/* <Paging DataType={test} /> */}
       </main>
     </>
   );

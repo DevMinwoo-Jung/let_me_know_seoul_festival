@@ -42,7 +42,7 @@ export default function Paging({DataType}:any) {
 
   const setPrevPage = () => {
     if(currentPage - pagingNum > 0){
-      setCurrnetPage(pageArray[0]   - pagingNum);
+      setCurrnetPage(pageArray[0] - pagingNum);
     }
   }
 
@@ -58,8 +58,7 @@ export default function Paging({DataType}:any) {
 
 
   return (
-    <>
-      <div className='flex leading-4 justify-center mt-12'>
+      <div className='w-60 flex leading-4 justify-evenly mx-auto mt-12'>
         <BiFirstPage className='cursor-pointer' onClick={setFirstPage}/>
         <MdArrowBackIos className='cursor-pointer' onClick={setPrevPage}/>
         {
@@ -72,6 +71,5 @@ export default function Paging({DataType}:any) {
         <MdArrowForwardIos className='cursor-pointer' onClick={setNextPage}/>
         <BiLastPage className='cursor-pointer' onClick={setLastPage}/>
       </div>
-    </>
   )
 }
