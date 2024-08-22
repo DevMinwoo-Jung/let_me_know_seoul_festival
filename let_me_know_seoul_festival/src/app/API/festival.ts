@@ -16,3 +16,24 @@ export const fetchExample = async () => {
   // Props를 사용해 페이지로 데이터를 전달한다.
   return data;
 };
+
+interface getFestivalPerPageI {
+  start: string;
+  end: string
+}
+
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
+export const festivalAIP = createApi({
+  reducerPath: 'festivalAIP',
+  baseQuery: fetchBaseQuery({ baseUrl: `http://openapi.seoul.go.kr:8088/${SERVICE_KEY}/json` }),
+  tagTypes: [],
+  endpoints: (builder) => ({
+    getFestivalPerPage: builder.query({
+      query: ({start, end}:getFestivalPerPageI) => `/${start}/${end}`,
+    }),
+  }),
+})
+
+// Export hooks for usage in functional components
+export const { useGetFestivalPerPageQuery } = festivalAIP
