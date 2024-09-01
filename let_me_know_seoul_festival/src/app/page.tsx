@@ -1,5 +1,4 @@
-'use client'
-import { fetchExample, useGetFestivalPerPageQuery } from "./API/festival";
+import { useGetFestivalPerPageQuery } from "./API/festival";
 import FestivalItems from "./Components/FestivalItems/FestivalItems";
 import Paging from "./Components/Paging";
 
@@ -12,6 +11,7 @@ export default function Home() {
 
   if(error) {
     console.log(error);
+    return <p>error occured..</p>
   }
 
   if(isLoading){

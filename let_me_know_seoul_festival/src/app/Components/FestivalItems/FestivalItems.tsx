@@ -5,10 +5,6 @@ import React from 'react'
 
 export default async function FestivalItems() {
 
-  const test = await fetchExample();
-
-  console.log(test)
-
   return (
     <div className='grid grid-rows-4 grid-flow-col gap-5 p-4'>
       {/* {

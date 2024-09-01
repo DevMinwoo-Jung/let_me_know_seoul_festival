@@ -1,4 +1,7 @@
 
+
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+
 const SERVICE_KEY = '48504d46446d696e373365494c7848';
 
 export const fetchExample = async () => {
@@ -22,11 +25,10 @@ interface getFestivalPerPageI {
   end: string
 }
 
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export const festivalAIP = createApi({
+export const festivalAPI = createApi({
   reducerPath: 'festivalAIP',
-  baseQuery: fetchBaseQuery({ baseUrl: `http://openapi.seoul.go.kr:8088/${SERVICE_KEY}/json` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `http://openapi.seoul.go.kr:8088/${SERVICE_KEY}/json/culturalEventInfo` }),
   tagTypes: [],
   endpoints: (builder) => ({
     getFestivalPerPage: builder.query({
@@ -36,4 +38,4 @@ export const festivalAIP = createApi({
 })
 
 // Export hooks for usage in functional components
-export const { useGetFestivalPerPageQuery } = festivalAIP
+export const { useGetFestivalPerPageQuery } = festivalAPI
