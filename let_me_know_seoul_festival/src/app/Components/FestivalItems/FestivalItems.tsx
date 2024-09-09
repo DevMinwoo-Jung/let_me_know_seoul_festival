@@ -1,16 +1,12 @@
-import { fetchExample } from '@/app/API/festival';
-import { RootState } from '@reduxjs/toolkit/query';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export function FestivalItems() {
   
-  const dispatch = useDispatch();
-
   // Access the Redux state
-  const { festivals, totalCount } = useSelector((state: any) => state.festival);
+  const { festivals, totalCount } = useSelector((state: any) => state.festivalSlice);
 
   return (
     <div className='grid grid-rows-4 grid-flow-col gap-5 p-4'>

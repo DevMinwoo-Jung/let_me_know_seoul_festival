@@ -4,21 +4,30 @@ import { BiFirstPage } from "react-icons/bi";
 import { MdArrowBackIos } from "react-icons/md";
 import { BiLastPage } from "react-icons/bi";
 import { MdArrowForwardIos } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
+import { setEndNumber, setPageNumber, setStartNumber } from '@/lib/festivalSlice';
 
 export default function Paging({DataType}:any) {
   
-  const totalCount = DataType?.value 
-  ? JSON.parse(DataType.value)?.culturalEventInfo?.list_total_count
-  : null;
+  const { totalCount, startNumber, endNumber, currentPage  } = useSelector((state: any) => state.festivalSlice);
   
   const pagingNum = 5;
   const pagePerSize = 25;
   const [pageArray, setPageArray] = useState<any>([]);
-  const [currentPage, setCurrnetPage] = useState(1);
   const pageItemCount = pagingNum * pagePerSize;
   const totalPageCount = Math.ceil(totalCount / pageItemCount);
+
+
+  const dispatch = useDispatch();
   
   useEffect(() => {
+    const newStart = (currentPage - 1) * 25 + 1; // Assuming 25 items per page
+    const newEnd = currentPage * 25;
+  
+    dispatch(setPageNumber({ currentPage }));
+    dispatch(setStartNumber({ startNumber: newStart }));
+    dispatch(setEndNumber({ endNumber: newEnd }));
+
     if(pageArray.includes(currentPage)){
       return;
     }
@@ -30,30 +39,30 @@ export default function Paging({DataType}:any) {
         setPageArray([...[], ... Array.from({ length: pagingNum }, (_, i) => currentPage + i)]);
       }
     }
-  }, [currentPage, totalCount, totalPageCount,pageArray]);
+  }, [currentPage, totalCount, totalPageCount, pageArray, dispatch]);
 
   const setLastPage = () => {
-    setCurrnetPage(totalPageCount - 4);
+    dispatch(setPageNumber({currentPage: totalPageCount - 4}));
   }
 
   const setFirstPage = () => {
-    setCurrnetPage(1);
+    dispatch(setPageNumber({currentPage:1}));
   }
 
   const setPrevPage = () => {
     if(currentPage - pagingNum > 0){
-      setCurrnetPage(pageArray[0] - pagingNum);
+      dispatch(setPageNumber({currentPage:pageArray[0] - pagingNum}));
     }
   }
 
   const setNextPage = () => {
     if(currentPage + pagingNum < totalPageCount){
-      setCurrnetPage(pageArray[0] + pagingNum);
+      dispatch(setPageNumber({currentPage:pageArray[0] + pagingNum}));
     }
   }
 
   const setCurrnetPageNumber = (event:any) => {
-    setCurrnetPage(() => Number(event.target.innerHTML));
+    dispatch(setPageNumber({currentPage: Number(event.target.innerHTML)}));
   }
 
 

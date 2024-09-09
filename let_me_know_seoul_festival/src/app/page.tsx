@@ -4,20 +4,26 @@ import { useGetFestivalPerPageQuery } from "./API/festival";
 
 import Paging from "./Components/Paging";
 import { FestivalItems } from "./Components/FestivalItems/FestivalItems";
-import { setFestivals } from "@/lib/festivalSlice";
-import { useDispatch } from "react-redux";
+import { setFestivals, setTotalCount } from "@/lib/festivalSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
-
-  
-  const { data, error, isLoading } = useGetFestivalPerPageQuery({start:"1",end:"25"})
   
   const dispatch = useDispatch();
+  // Access startNumber, endNumber, and current page from Redux state
+  const { startNumber, endNumber, currentPage, festivals, totalCount } = useSelector(
+    (state: any) => state.festivalSlice
+  );
+
+  const { data, error, isLoading } = useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString()})
+  
 
  useEffect(() => {
   if (data && data.culturalEventInfo && data.culturalEventInfo.row) {
     dispatch(setFestivals({
       festivals: data.culturalEventInfo.row, // API에서 받아온 데이터에 맞게 수정
+    }));
+    dispatch(setTotalCount({
       totalCount: data.culturalEventInfo.list_total_count,
     }));
   }
@@ -36,7 +42,7 @@ if(isLoading){
     <>
       <main className="block min-h-screen">
         <FestivalItems />
-        {/* <Paging DataType={test} /> */}
+        <Paging/>
       </main>
     </>
   );
