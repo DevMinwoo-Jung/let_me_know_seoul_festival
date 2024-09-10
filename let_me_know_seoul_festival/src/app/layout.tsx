@@ -26,7 +26,7 @@ export default function RootLayout({
         <body className="w-screen overflow-x-hidden">
           <Header/>
           <div className="flex">
-            <Navbar/>
+            {/* <Navbar/> */}
             <main className="w-full">{children}</main> 
           </div>
           <Footer/> 

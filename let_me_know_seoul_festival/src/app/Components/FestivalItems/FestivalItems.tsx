@@ -11,11 +11,11 @@ export function FestivalItems() {
 
 
   return (
-    <div className='grid grid-rows-4 grid-flow-col gap-5 p-4'>
+    <div className='grid max-xl:grid-cols-4 2xl:grid-cols-5 gap-5 p-4'>
       {
         festivals && festivals.map((ele: any) => {
           
-          const { CODENAME, GUNAME, TITLE, DATE, MAIN_IMG, HMPG_ADDR } = ele;
+          const { CODENAME, GUNAME, TITLE, DATE, MAIN_IMG, HMPG_ADDR, ORG_LINK } = ele;
           
           const festivalCode = HMPG_ADDR.slice((HMPG_ADDR.lastIndexOf('cultcode') + 9), HMPG_ADDR.indexOf('&'))
 

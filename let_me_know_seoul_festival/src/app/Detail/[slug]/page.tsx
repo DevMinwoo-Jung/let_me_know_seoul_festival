@@ -1,5 +1,6 @@
 'use client'
 import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 
@@ -14,7 +15,8 @@ export default function DetailPage() {
     );
 
     const festivalDetail = festivals.filter((festival:any) => festival.HMPG_ADDR.slice(festival.HMPG_ADDR.lastIndexOf('cultcode') + 9, festival.HMPG_ADDR.indexOf('&')) === slug)[0]
-    const { CODENAME, GUNAME, TITLE, DATE, MAIN_IMG, HMPG_ADDR } = festivalDetail;
+    console.log(festivalDetail);
+    const { CODENAME, GUNAME, TITLE, DATE, MAIN_IMG, ORG_LINK } = festivalDetail;
 
     return (
       <>   
@@ -27,6 +29,11 @@ export default function DetailPage() {
           <div>
             <span>{TITLE}</span>
             <span>{DATE}</span>
+          </div>
+          <div>
+            <Link href={ORG_LINK} target='new'>
+              홈페이지 가기
+            </Link>
           </div>
         </div>
       </>
