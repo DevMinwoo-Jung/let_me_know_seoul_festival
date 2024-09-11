@@ -1,12 +1,15 @@
 
+import { PerformanceI } from '@/app/Utils/dataType';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface FestivalState {
-  festivals: Array<any>; // 데이터를 받을 형식에 맞게 타입 지정
+  festivals: Array<PerformanceI>; // 데이터를 받을 형식에 맞게 타입 지정
   totalCount: number;
   currentPage: number;
   startNumber: number;
   endNumber: number;
+  codeCategory: Array<string>;
+  guCategory: Array<string>;
 }
 
 export const initialState:FestivalState = {
@@ -15,13 +18,15 @@ export const initialState:FestivalState = {
     currentPage: 1,
     startNumber: 1,
     endNumber: 25,
+    codeCategory: [],
+    guCategory: []
 }
 
 const festivals = createSlice({
   name: 'festival',
   initialState,
   reducers: {
-    setFestivals: (state, action: PayloadAction<{ festivals: any[] }>) => {
+    setFestivals: (state, action: PayloadAction<{ festivals: PerformanceI[] }>) => {
       state.festivals = action.payload.festivals;
     },
     setTotalCount: (state, action: PayloadAction<{ totalCount: number }>) => {
@@ -36,7 +41,14 @@ const festivals = createSlice({
     setEndNumber: (state, action: PayloadAction<{ endNumber: number }>) => {
       state.endNumber = action.payload.endNumber;
     },
+    setGuCategory: (state, action: PayloadAction<{ guCategory: string[] }>) => {
+      state.guCategory = action.payload.guCategory;
+    },
+    setCodeCategory: (state, action: PayloadAction<{ codeCategory: string[] }>) => {
+      state.codeCategory = action.payload.codeCategory;
+    },
   },
 });
-export const { setFestivals, setTotalCount, setPageNumber, setStartNumber, setEndNumber } = festivals.actions;
+export const { setFestivals, setTotalCount, setPageNumber, setStartNumber, 
+                setEndNumber, setCodeCategory, setGuCategory } = festivals.actions;
 export default festivals.reducer;

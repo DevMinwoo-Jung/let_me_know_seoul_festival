@@ -4,8 +4,9 @@ import { useGetFestivalPerPageQuery } from "./API/festival";
 
 import Paging from "./Components/Paging";
 import { FestivalItems } from "./Components/FestivalItems/FestivalItems";
-import { setFestivals, setTotalCount } from "@/lib/festivalSlice";
+import {  setCodeCategory, setFestivals, setGuCategory, setTotalCount } from "@/lib/festivalSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { PerformanceI } from "./Utils/dataType";
 
 export default function Home() {
   
@@ -26,6 +27,22 @@ export default function Home() {
     dispatch(setTotalCount({
       totalCount: data.culturalEventInfo.list_total_count,
     }));
+
+    const gufilter = new Set();
+    const codeFilter = new Set();
+
+
+
+    dispatch(setGuCategory({
+      guCategory: data.culturalEventInfo.row.forEach((ele:PerformanceI) => gufilter.add(ele.GUNAME)),
+    }));
+
+    dispatch(setCodeCategory({
+      codeCategory: data.culturalEventInfo.row.forEach((ele:PerformanceI) => codeFilter.add(ele.CODENAME)),
+    }));
+
+    console.log(gufilter)
+    console.log(codeFilter)
   }
 }, [data,error, dispatch]); // Dependency array ensures this only runs when `data` changes
 
