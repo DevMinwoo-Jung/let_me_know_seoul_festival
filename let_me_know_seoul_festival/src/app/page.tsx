@@ -1,18 +1,17 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useGetFestivalPerPageQuery } from "./API/festival";
 
 import Paging from "./Components/Paging";
 import { FestivalItems } from "./Components/FestivalItems/FestivalItems";
-import {  setCodeCategory, setFestivals, setTotalCount } from "@/lib/festivalSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { PerformanceI } from "./Utils/dataType";
+import { setFestivals, setTotalCount } from "@/lib/festivalSlice";
+import Search from "./Components/Search/Search";
 
 export default function Home() {
   
   const dispatch = useDispatch();
-  // Access startNumber, endNumber, and current page from Redux state
-  const { startNumber, endNumber, currentPage, festivals, totalCount } = useSelector(
+  const { startNumber, endNumber } = useSelector(
     (state: any) => state.festivalSlice
   );
 
@@ -42,6 +41,7 @@ if(isLoading){
   return (
     <>
       <main className="block min-h-screen">
+        <Search/>
         <FestivalItems />
         <Paging/>
       </main>
