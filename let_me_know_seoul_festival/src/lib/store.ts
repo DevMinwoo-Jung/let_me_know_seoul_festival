@@ -1,14 +1,14 @@
 import { festivalAPI } from '@/app/API/festival'
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import festivalSlice from './festivalSlice'
+import festivals from './festivalSlice'
 
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       [festivalAPI.reducerPath]: festivalAPI.reducer,
-      festivalSlice,
+      festivals,
     },
       // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.

@@ -1,24 +1,4 @@
-export interface RootInterface {
-  value: Value;
-}
-
-export interface Value {
-  status: string;
-  value: DataType;
-  reason?: any;
-  _response: Response;
-  _debugInfo?: any;
-}
-
-export interface DataType {
-  culturalEventInfo:{
-    list_total_count: number;
-    RESULT: RESULT;
-    row: Row[];
-  }
-}
-
-export interface Row {
+export interface PerformanceI {
   CODENAME: string;
   GUNAME: string;
   TITLE: string;
@@ -41,9 +21,4 @@ export interface Row {
   LAT: string;
   IS_FREE: string;
   HMPG_ADDR: string;
-}
-
-export interface RESULT {
-  CODE: string;
-  MESSAGE: string;
 }

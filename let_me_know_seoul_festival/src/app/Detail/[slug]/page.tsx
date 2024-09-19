@@ -11,7 +11,7 @@ export default function DetailPage() {
     console.log(slug)
 
     const { festivals } = useSelector(
-      (state: any) => state.festivalSlice
+      (state: any) => state.festivals
     );
 
     const festivalDetail = festivals.filter((festival:any) => festival.HMPG_ADDR.slice(festival.HMPG_ADDR.lastIndexOf('cultcode') + 9, festival.HMPG_ADDR.indexOf('&')) === slug)[0]

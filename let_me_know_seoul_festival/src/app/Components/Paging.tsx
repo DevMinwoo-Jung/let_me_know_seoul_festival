@@ -9,7 +9,7 @@ import { setEndNumber, setPageNumber, setStartNumber } from '@/lib/festivalSlice
 
 export default function Paging({DataType}:any) {
   
-  const { totalCount, startNumber, endNumber, currentPage  } = useSelector((state: any) => state.festivalSlice);
+  const { totalCount, startNumber, endNumber, currentPage  } = useSelector((state: any) => state.festivals);
   
   const pagingNum = 5;
   const pagePerSize = 25;

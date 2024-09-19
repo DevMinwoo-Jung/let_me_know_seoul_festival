@@ -11,11 +11,12 @@ import Search from "./Components/Search/Search";
 export default function Home() {
   
   const dispatch = useDispatch();
-  const { startNumber, endNumber } = useSelector(
-    (state: any) => state.festivalSlice
+  const { startNumber, endNumber, codeName, title, date } = useSelector(
+    (state: any) => state.festivals
   );
 
-  const { data, error, isLoading } = useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString()})
+  const { data, error, isLoading } = 
+  useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString(), codeName, title, date})
   
 
  useEffect(() => {

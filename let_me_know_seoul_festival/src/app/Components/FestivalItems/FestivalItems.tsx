@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 export function FestivalItems() {
   
   // Access the Redux state
-  const { festivals } = useSelector((state: any) => state.festivalSlice);
+  const { festivals } = useSelector((state: any) => state.festivals);
 
 
 
