@@ -7,39 +7,34 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { setEndNumber, setPageNumber, setStartNumber } from '@/lib/festivalSlice';
 
-export default function Paging({DataType}:any) {
+export default function Paging() {
   
-  const { totalCount, startNumber, endNumber, currentPage  } = useSelector((state: any) => state.festivals);
+  const { totalCount, currentPage  } = useSelector((state: any) => state.festivals);
   
   const pagingNum = 5;
   const pagePerSize = 25;
   const [pageArray, setPageArray] = useState<any>([]);
-  const pageItemCount = pagingNum * pagePerSize;
-  const totalPageCount = Math.ceil(totalCount / pageItemCount);
-
+  const totalPageCount = Math.ceil(totalCount / pagePerSize);
 
   const dispatch = useDispatch();
   
   useEffect(() => {
+
     const newStart = (currentPage - 1) * 25 + 1; // Assuming 25 items per page
     const newEnd = currentPage * 25;
   
     dispatch(setPageNumber({ currentPage }));
     dispatch(setStartNumber({ startNumber: newStart }));
     dispatch(setEndNumber({ endNumber: newEnd }));
-
-    if(pageArray.includes(currentPage)){
-      return;
-    }
-
+    console.log(totalCount, totalPageCount)
     if (totalCount > 0) {
-      if(totalPageCount <= 5){
+      if(totalPageCount < 5){
         setPageArray([...[], ... Array.from({ length: totalPageCount }, (_, i) => currentPage + i)]);
       } else {
         setPageArray([...[], ... Array.from({ length: pagingNum }, (_, i) => currentPage + i)]);
       }
     }
-  }, [currentPage, totalCount, totalPageCount, pageArray, dispatch]);
+  }, [currentPage, totalCount, totalPageCount, dispatch]);
 
   const setLastPage = () => {
     dispatch(setPageNumber({currentPage: totalPageCount - 4}));

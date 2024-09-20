@@ -22,3 +22,13 @@ export interface PerformanceI {
   IS_FREE: string;
   HMPG_ADDR: string;
 }
+
+export interface InfoI {
+  CODENAME?: string;
+  GUNAME?: string;
+  TITLE?: string;
+  DATE?: string;
+  MAIN_IMG?: string;
+  HMPG_ADDR?: string;
+  ORG_LINK?: string;
+}

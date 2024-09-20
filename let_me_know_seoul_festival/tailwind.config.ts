@@ -15,6 +15,9 @@ const config: Config = {
       },
       width: {
         'search': '420px',
+      },
+      lineHeight: {
+        'imgLineHeight': '50px'
       }
     },
   },
