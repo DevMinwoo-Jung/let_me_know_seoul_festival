@@ -14,7 +14,8 @@ export default function Paging() {
   const pagingNum = 5;
   const pagePerSize = 25;
   const [pageArray, setPageArray] = useState<any>([]);
-  const totalPageCount = Math.ceil(totalCount / pagePerSize);
+  const pageItemCount = pagingNum * pagePerSize;
+  const totalPageCount = Math.ceil(totalCount / pageItemCount);
 
   const dispatch = useDispatch();
   

@@ -1,8 +1,9 @@
 'use client'
 import { useGetFestivalPerPageQuery } from '@/app/API/festival';
-import { setCodeCategory, setCodeName, setTotalCount } from '@/lib/festivalSlice';
+import { setCodeName, setFestivals, setTotalCount } from '@/lib/festivalSlice';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../FestivalItems/Loading';
 
 export default function CategoryBox() {
   const dispatch = useDispatch();
@@ -39,19 +40,25 @@ export default function CategoryBox() {
       }))
     }
 
-    toggleCategoreis()
+    toggleCategoreis();
   }
 
   useEffect(()=>{
     setQueryParams({ start: startNumber.toString(), end: endNumber.toString(), codeName, title, date });
     if (data && data.culturalEventInfo) {
-      console.log('여기 안온다고?')
       dispatch(setTotalCount({
         totalCount: data.culturalEventInfo.list_total_count,
+      }));
+      dispatch(setFestivals({
+        festivals: data.culturalEventInfo.row, // API에서 받아온 데이터에 맞게 수정
       }));
     }
 
   }, [data, codeName, dispatch, endNumber, startNumber, title, date])
+
+  if(isLoading){
+    return <Loading/>
+  }
 
 
   return (

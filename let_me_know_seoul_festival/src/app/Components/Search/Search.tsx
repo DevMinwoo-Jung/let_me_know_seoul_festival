@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import CategoryBox from './CategoryBox';
+import Loading from '../FestivalItems/Loading';
 
 
 export default function Search() {
@@ -35,11 +36,7 @@ export default function Search() {
   const keywordDispatch = (param:string) => {
 
       setKeyword(param);
-
-      dispatch(setTitle({
-        title: param, // API에서 받아온 데이터에 맞게 수정
-      }));
-
+      
       if(param.length >= 1){
         setCancelBtn(true);
       } else {
@@ -47,15 +44,18 @@ export default function Search() {
       }
   }
 
-  const { startNumber, endNumber, codeName } = useSelector((state: any) => state.festivals);
+  const { startNumber, endNumber, codeName, date } = useSelector((state: any) => state.festivals);
 
   // Function to update the query parameters and trigger the query
   const activeButton = () => {
-    setQueryParams({ start: startNumber.toString(), end: endNumber.toString(),  codeName, title: keyword });
+    setQueryParams({ start: startNumber.toString(), end: endNumber.toString(),  codeName, title: keyword, date });
   };
 
   const activeEnter = (e: any) => {
     if (e.key === 'Enter') {
+      dispatch(setTitle({
+        title: e.target.value, 
+      }));
       activeButton();
     }
   };
@@ -70,7 +70,11 @@ export default function Search() {
       totalCount: data.culturalEventInfo.list_total_count,
     }));
   }
-}, [data,error, dispatch]); // Dependency array ensures this only runs when `data` changes
+}, [data, error, dispatch, keyword]); // Dependency array ensures this only runs when `data` changes
+
+if(isLoading){
+  return <Loading/>
+}
 
   return (
     <div className='w-screen flex justify-center leading-9'>

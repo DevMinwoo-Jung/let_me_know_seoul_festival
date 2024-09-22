@@ -7,6 +7,7 @@ import { FestivalItems } from "./Components/FestivalItems/FestivalItems";
 import { useDispatch, useSelector } from "react-redux";
 import { setFestivals, setTotalCount } from "@/lib/festivalSlice";
 import Search from "./Components/Search/Search";
+import Loading from "./Components/FestivalItems/Loading";
 
 export default function Home() {
   
@@ -28,7 +29,7 @@ export default function Home() {
       totalCount: data.culturalEventInfo.list_total_count,
     }));
   }
-}, [data,error, dispatch]); // Dependency array ensures this only runs when `data` changes
+}, [data,error, dispatch]);
 
 if(error) {
   console.log(error);
@@ -36,7 +37,7 @@ if(error) {
 }
 
 if(isLoading){
-  return <p>Loading...</p>
+  return <Loading/>
 }
 
   return (
