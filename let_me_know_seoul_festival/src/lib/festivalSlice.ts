@@ -12,6 +12,7 @@ export interface FestivalState {
   codeName: string;
   date: string;
   title: string;
+  isEmpty: boolean;
 }
 
 export const initialState:FestivalState = {
@@ -23,7 +24,8 @@ export const initialState:FestivalState = {
     codeCategory: ["전체","교육/체험", "국악", "기타", "독주/독창회", "무용", "뮤지컬/오페라", "연극", "영화", "전시/미술", "축제-기타", "축제-문화예술", "축제-시민화합", "축제-자연/경관", "죽제-전통/역사", "콘서트", "클래식"],
     codeName: " ",
     date: " ",
-    title: " "
+    title: " ",
+    isEmpty: false,
 }
 
 const festivals = createSlice({
@@ -57,8 +59,11 @@ const festivals = createSlice({
     setDate: (state, action: PayloadAction<{ date: string }>) => {
       state.date = action.payload.date;
     },
+    setIsEmpty: (state, action: PayloadAction<{ isEmpty: boolean }>) => {
+      state.isEmpty = action.payload.isEmpty;
+    },
   },
 });
 export const { setFestivals, setTotalCount, setPageNumber, setStartNumber, 
-                setEndNumber, setCodeCategory, setCodeName, setDate, setTitle } = festivals.actions;
+                setEndNumber, setCodeCategory, setCodeName, setDate, setTitle, setIsEmpty } = festivals.actions;
 export default festivals.reducer;

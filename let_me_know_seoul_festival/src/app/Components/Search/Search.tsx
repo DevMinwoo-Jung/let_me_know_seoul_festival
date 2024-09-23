@@ -1,11 +1,12 @@
 'use client';
 import { useGetFestivalPerPageQuery } from '@/app/API/festival';
-import { setFestivals, setTitle, setTotalCount } from '@/lib/festivalSlice';
+import { setFestivals, setIsEmpty, setTitle, setTotalCount } from '@/lib/festivalSlice';
 import React, { useEffect, useState } from 'react'
 import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import CategoryBox from './CategoryBox';
 import Loading from '../FestivalItems/Loading';
+import NoResult from '../NoResult';
 
 
 export default function Search() {
@@ -28,7 +29,7 @@ export default function Search() {
   });
 
   const clearInput = () => {
-    setKeyword("");
+    setKeyword(" ");
     setCancelBtn(false);
     activeButton();
   }
@@ -44,8 +45,11 @@ export default function Search() {
       }
   }
 
+  
+
   const { startNumber, endNumber, codeName, date } = useSelector((state: any) => state.festivals);
 
+  
   // Function to update the query parameters and trigger the query
   const activeButton = () => {
     setQueryParams({ start: startNumber.toString(), end: endNumber.toString(),  codeName, title: keyword, date });
@@ -69,12 +73,19 @@ export default function Search() {
     dispatch(setTotalCount({
       totalCount: data.culturalEventInfo.list_total_count,
     }));
-  }
-}, [data, error, dispatch, keyword]); // Dependency array ensures this only runs when `data` changes
+    dispatch(setIsEmpty({
+      isEmpty: false,
+    }));       
+  } 
+
+}, [data, error, dispatch]); // Dependency array ensures this only runs when `data` changes
 
 if(isLoading){
   return <Loading/>
 }
+
+
+
 
   return (
     <div className='w-screen flex justify-center leading-9'>
