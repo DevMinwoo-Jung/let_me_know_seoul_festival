@@ -14,6 +14,7 @@ export default function Search() {
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState<string>('');
   const [cancelBtn, setCancelBtn] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
   
   const [queryParams, setQueryParams] = useState<{ start: string; end: string; title?: string; codeName?: string; date?: string }>({
     start: '1',
@@ -57,6 +58,7 @@ export default function Search() {
 
   const activeEnter = (e: any) => {
     if (e.key === 'Enter') {
+      setIsSubmit(true);
       dispatch(setTitle({
         title: e.target.value, 
       }));
@@ -66,26 +68,35 @@ export default function Search() {
   
 
  useEffect(() => {
-  if (data && data.culturalEventInfo && data.culturalEventInfo.row) {
-    dispatch(setFestivals({
-      festivals: data.culturalEventInfo.row, // API에서 받아온 데이터에 맞게 수정
-    }));
-    dispatch(setTotalCount({
-      totalCount: data.culturalEventInfo.list_total_count,
-    }));
-    dispatch(setIsEmpty({
-      isEmpty: false,
-    }));       
-  } 
+  if(isSubmit){
+    if (data && data.culturalEventInfo && data.culturalEventInfo.row) {
+      dispatch(setFestivals({
+        festivals: data.culturalEventInfo.row, // API에서 받아온 데이터에 맞게 수정
+      }));
+      dispatch(setTotalCount({
+        totalCount: data.culturalEventInfo.list_total_count,
+      }));
+      dispatch(setIsEmpty({
+        isEmpty: false,
+      }));       
+    } else {
+        dispatch(setFestivals({
+          festivals: [], // API에서 받아온 데이터에 맞게 수정
+        }));
+        dispatch(setTotalCount({
+          totalCount: 0,
+        }));
+        dispatch(setIsEmpty({
+          isEmpty: true,
+        }));       
+    }
+  }
 
-}, [data, error, dispatch]); // Dependency array ensures this only runs when `data` changes
+}, [data, dispatch, isSubmit]); // Dependency array ensures this only runs when `data` changes
 
 if(isLoading){
   return <Loading/>
 }
-
-
-
 
   return (
     <div className='w-screen flex justify-center leading-9'>

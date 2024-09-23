@@ -32,7 +32,6 @@ export default function Home() {
 }, [data,error, dispatch]);
 
 if(error) {
-  console.log(error);
   return <p>Error occurred..</p>
 }
 
