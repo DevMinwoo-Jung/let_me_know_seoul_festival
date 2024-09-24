@@ -6,7 +6,6 @@ import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import CategoryBox from './CategoryBox';
 import Loading from '../FestivalItems/Loading';
-import NoResult from '../NoResult';
 
 
 export default function Search() {
@@ -15,6 +14,7 @@ export default function Search() {
   const [keyword, setKeyword] = useState<string>('');
   const [cancelBtn, setCancelBtn] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [borderHighlight, setBorderHighlight] = useState(false);
   
   const [queryParams, setQueryParams] = useState<{ start: string; end: string; title?: string; codeName?: string; date?: string }>({
     start: '1',
@@ -65,7 +65,19 @@ export default function Search() {
       activeButton();
     }
   };
-  
+
+
+  const setHighlight = (e:any) => {
+    if(e.target.localName ===  "input"){
+      setBorderHighlight(true);
+    } else {
+      setBorderHighlight(true);
+    }
+  }
+
+  const removeHighlight = (e:any) => {
+    setBorderHighlight(false);
+  }
 
  useEffect(() => {
   if(isSubmit){
@@ -99,8 +111,15 @@ if(isLoading){
 }
 
   return (
-    <div className='w-screen flex justify-center leading-9'>
-      <div className='w-search h-14 flex -mt-8 rounded-xl bg-white z-10 p-2'>
+    <div
+        className="w-screen flex justify-center leading-9"
+        onClick={(e) => setHighlight(e)}
+        onMouseEnter={(e) => setHighlight(e)}
+        onMouseLeave={(e) => removeHighlight(e)}
+      >
+      <div className={`w-search h-14 flex -mt-8 rounded-xl bg-white z-10 p-2  ${
+          borderHighlight ? 'border-2 border-indigo-500/50' : ''
+        }`}>
         <div className='w-full focus:border-2 flex'>
           <div className='w-1/6'>
             <IoIosSearch className='w-6 h-8'/>
