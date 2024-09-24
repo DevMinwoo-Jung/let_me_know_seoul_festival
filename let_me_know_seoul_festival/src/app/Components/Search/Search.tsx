@@ -116,7 +116,7 @@ if(isLoading){
         onClick={(e) => setHighlight(e)}
         onMouseEnter={(e) => setHighlight(e)}
         onMouseLeave={(e) => removeHighlight(e)}
-      >
+      > 
       <div className={`w-search h-14 flex -mt-8 rounded-xl bg-white z-10 p-2  ${
           borderHighlight ? 'border-2 border-indigo-500/50' : ''
         }`}>
