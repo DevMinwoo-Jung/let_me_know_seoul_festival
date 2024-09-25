@@ -3,28 +3,28 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface Reaction {
   borderHighlight: boolean;
-  hideSearchIcon: boolean;
+  showSearchIcon: boolean;
 }
 
 const initialState:Reaction = {
   borderHighlight: false,
-  hideSearchIcon: false
+  showSearchIcon: true
 }
 
 const reaction = createSlice({
   name: 'react',
   initialState,
   reducers: {
-    borderHighlight: (state, action: PayloadAction<{borderHighlight: boolean}>) => {
+    setborderHighlight: (state, action: PayloadAction<{borderHighlight: boolean}>) => {
       state.borderHighlight = action.payload.borderHighlight;
     },
-    hideSearchIcon: (state,action: PayloadAction<{hideSearchIcon: boolean}>) => {
-      state.hideSearchIcon = action.payload.hideSearchIcon
+    setshowSearchIcon: (state,action: PayloadAction<{showSearchIcon: boolean}>) => {
+      state.showSearchIcon = action.payload.showSearchIcon
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { borderHighlight, hideSearchIcon } = reaction.actions
+export const { setborderHighlight, setshowSearchIcon } = reaction.actions
 
 export default reaction.reducer

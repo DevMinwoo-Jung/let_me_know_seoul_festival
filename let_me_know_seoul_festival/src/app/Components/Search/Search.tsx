@@ -6,7 +6,7 @@ import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import CategoryBox from './CategoryBox';
 import Loading from '../FestivalItems/Loading';
-import { setborderHighlight } from '@/lib/reactionSlice';
+import { setborderHighlight, setshowSearchIcon } from '@/lib/reactionSlice';
 
 
 export default function Search() {
@@ -50,7 +50,7 @@ export default function Search() {
 
   const { startNumber, endNumber, codeName, date } = useSelector((state: any) => state.festivals);
 
-  const { borderHighlight, hideSearchIcon } = useSelector((state: any) => state.reaction);
+  const { borderHighlight, showSearchIcon } = useSelector((state: any) => state.reaction);
 
   
   // Function to update the query parameters and trigger the query
@@ -70,20 +70,20 @@ export default function Search() {
 
 
   const setHighlight = (e:any) => {
-    if(e.target.localName ===  "input"){
-      dispatch(setborderHighlight({
-        borderHighlight: !borderHighlight, 
-      }));
-    } else {
-      dispatch(setborderHighlight({
-        borderHighlight: !borderHighlight, 
-      }));
-    }
+    dispatch(setborderHighlight({
+      borderHighlight: true, 
+    }));
+    dispatch(setshowSearchIcon({
+      showSearchIcon: false, 
+    }));
   }
 
   const removeHighlight = (e:any) => {
     dispatch(setborderHighlight({
-      borderHighlight: !borderHighlight, 
+      borderHighlight: false,
+    }));
+    dispatch(setshowSearchIcon({
+      showSearchIcon: true, 
     }));
   }
 
@@ -130,7 +130,9 @@ if(isLoading){
         }`}>
         <div className='w-full focus:border-2 flex'>
           <div className='w-1/6'>
-            <IoIosSearch className='w-6 h-8'/>
+            {
+              showSearchIcon ? <IoIosSearch className='w-6 h-8'/> : ''
+            }
           </div>
           <input type="text" value={keyword} name="" id="" className='w-4/6 rounded-xl h-full focus:outline-none focus:border-none focus:shadow-none'
               onChange={(e) => keywordDispatch(e.target.value)}
