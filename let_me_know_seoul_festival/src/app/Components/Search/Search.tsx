@@ -6,6 +6,7 @@ import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import CategoryBox from './CategoryBox';
 import Loading from '../FestivalItems/Loading';
+import { setborderHighlight } from '@/lib/reactionSlice';
 
 
 export default function Search() {
@@ -14,7 +15,6 @@ export default function Search() {
   const [keyword, setKeyword] = useState<string>('');
   const [cancelBtn, setCancelBtn] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
-  const [borderHighlight, setBorderHighlight] = useState(false);
   
   const [queryParams, setQueryParams] = useState<{ start: string; end: string; title?: string; codeName?: string; date?: string }>({
     start: '1',
@@ -50,6 +50,8 @@ export default function Search() {
 
   const { startNumber, endNumber, codeName, date } = useSelector((state: any) => state.festivals);
 
+  const { borderHighlight, hideSearchIcon } = useSelector((state: any) => state.reaction);
+
   
   // Function to update the query parameters and trigger the query
   const activeButton = () => {
@@ -69,14 +71,20 @@ export default function Search() {
 
   const setHighlight = (e:any) => {
     if(e.target.localName ===  "input"){
-      setBorderHighlight(true);
+      dispatch(setborderHighlight({
+        borderHighlight: !borderHighlight, 
+      }));
     } else {
-      setBorderHighlight(true);
+      dispatch(setborderHighlight({
+        borderHighlight: !borderHighlight, 
+      }));
     }
   }
 
   const removeHighlight = (e:any) => {
-    setBorderHighlight(false);
+    dispatch(setborderHighlight({
+      borderHighlight: !borderHighlight, 
+    }));
   }
 
  useEffect(() => {

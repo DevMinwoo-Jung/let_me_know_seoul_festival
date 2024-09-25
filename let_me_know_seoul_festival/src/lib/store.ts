@@ -2,6 +2,7 @@ import { festivalAPI } from '@/app/API/festival'
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import festivals from './festivalSlice'
+import reaction from './reactionSlice'
 
 
 export const makeStore = () => {
@@ -9,6 +10,7 @@ export const makeStore = () => {
     reducer: {
       [festivalAPI.reducerPath]: festivalAPI.reducer,
       festivals,
+      reaction
     },
       // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.

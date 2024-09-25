@@ -15,7 +15,7 @@ export interface FestivalState {
   isEmpty: boolean;
 }
 
-export const initialState:FestivalState = {
+const initialState:FestivalState = {
     festivals: [],
     totalCount: 0, 
     currentPage: 1,
