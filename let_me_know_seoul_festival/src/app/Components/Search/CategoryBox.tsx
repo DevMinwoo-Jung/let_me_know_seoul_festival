@@ -1,6 +1,6 @@
 'use client'
 import { useGetFestivalPerPageQuery } from '@/app/API/festival';
-import { setCodeName, setFestivals, setTotalCount } from '@/lib/festivalSlice';
+import { setCodeName, setFestivals, setPageNumber, setTotalCount } from '@/lib/festivalSlice';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../FestivalItems/Loading';
@@ -39,7 +39,7 @@ export default function CategoryBox() {
         codeName: param
       }))
     }
-
+    dispatch(setPageNumber({currentPage:1}));
     toggleCategoreis();
   }
 

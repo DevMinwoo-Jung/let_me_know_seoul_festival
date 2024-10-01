@@ -19,25 +19,32 @@ export default function Paging() {
   const dispatch = useDispatch();
   
   useEffect(() => {
-
+    console.log(currentPage, pageArray[0]);
     const newStart = (currentPage - 1) * 25 + 1; // Assuming 25 items per page
     const newEnd = currentPage * 25;
   
     dispatch(setPageNumber({ currentPage }));
     dispatch(setStartNumber({ startNumber: newStart }));
     dispatch(setEndNumber({ endNumber: newEnd }));
-    console.log(totalCount, totalPageCount)
+    
     if (totalCount > 0) {
       if(totalPageCount < 5){
         setPageArray([...[], ... Array.from({ length: totalPageCount }, (_, i) => currentPage + i)]);
       } else {
-        setPageArray([...[], ... Array.from({ length: pagingNum }, (_, i) => currentPage + i)]);
+        if(!pageArray.includes(currentPage)){
+          if(currentPage >= totalPageCount - 4){
+            setPageArray([...[], ... Array.from({ length: pagingNum }, (_, i) => (totalPageCount - 4) + i)]);
+          } else {
+            setPageArray([...[], ... Array.from({ length: pagingNum }, (_, i) => currentPage + i)]);
+          }
+        }
+
       }
     }
-  }, [currentPage, totalCount, totalPageCount, dispatch]);
+  }, [currentPage, totalCount, totalPageCount, dispatch, pageArray]);
 
   const setLastPage = () => {
-    dispatch(setPageNumber({currentPage: totalPageCount - 4}));
+    dispatch(setPageNumber({currentPage: totalPageCount}));
   }
 
   const setFirstPage = () => {
@@ -45,13 +52,18 @@ export default function Paging() {
   }
 
   const setPrevPage = () => {
-    if(currentPage - pagingNum > 0){
-      dispatch(setPageNumber({currentPage:pageArray[0] - pagingNum}));
+    if(pageArray[4] - pagingNum > 0){
+      if(pageArray[4] - pagingNum < 0){
+        dispatch(setPageNumber({currentPage:1}));
+      } else {
+        dispatch(setPageNumber({currentPage:currentPage - pagingNum}));
+
+      }
     }
   }
 
   const setNextPage = () => {
-    if(currentPage + pagingNum < totalPageCount){
+    if(pageArray[0] + pagingNum < totalPageCount){
       dispatch(setPageNumber({currentPage:pageArray[0] + pagingNum}));
     }
     
@@ -63,7 +75,7 @@ export default function Paging() {
 
 
   return (
-      <div className='w-60 flex leading-4 justify-evenly mx-auto mt-12'>
+      <div className='max-w-80 min-w-60 flex leading-4 justify-evenly mx-auto mt-12'>
         <BiFirstPage className='cursor-pointer' onClick={setFirstPage}/>
         <MdArrowBackIos className='cursor-pointer' onClick={setPrevPage}/>
         {
