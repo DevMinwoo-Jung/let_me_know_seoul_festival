@@ -1,6 +1,6 @@
 'use client';
 import { useGetFestivalPerPageQuery } from '@/app/API/festival';
-import { setFestivals, setIsEmpty, setTitle, setTotalCount } from '@/lib/festivalSlice';
+import { setFestivals, setIsEmpty, setPageNumber, setTitle, setTotalCount } from '@/lib/festivalSlice';
 import React, { useEffect, useState } from 'react'
 import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
@@ -64,6 +64,7 @@ export default function Search() {
       dispatch(setTitle({
         title: e.target.value, 
       }));
+      dispatch(setPageNumber({currentPage:1}));       
       activeButton();
     }
   };
@@ -98,7 +99,7 @@ export default function Search() {
       }));
       dispatch(setIsEmpty({
         isEmpty: false,
-      }));       
+      }));    
     } else {
         dispatch(setFestivals({
           festivals: [], // API에서 받아온 데이터에 맞게 수정
