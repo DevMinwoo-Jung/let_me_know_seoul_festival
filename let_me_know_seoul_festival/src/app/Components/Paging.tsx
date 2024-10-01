@@ -12,10 +12,9 @@ export default function Paging() {
   const { totalCount, currentPage  } = useSelector((state: any) => state.festivals);
   
   const pagingNum = 5;
-  const pagePerSize = 25;
+
   const [pageArray, setPageArray] = useState<any>([]);
-  const pageItemCount = pagingNum * pagePerSize;
-  const totalPageCount = Math.ceil(totalCount / pageItemCount);
+  const totalPageCount = Math.ceil(totalCount / 25);
 
   const dispatch = useDispatch();
   
@@ -55,6 +54,7 @@ export default function Paging() {
     if(currentPage + pagingNum < totalPageCount){
       dispatch(setPageNumber({currentPage:pageArray[0] + pagingNum}));
     }
+    
   }
 
   const setCurrnetPageNumber = (event:any) => {

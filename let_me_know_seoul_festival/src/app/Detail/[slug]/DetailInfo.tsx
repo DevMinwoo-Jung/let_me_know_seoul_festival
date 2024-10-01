@@ -1,20 +1,26 @@
-import React from 'react'
+import React from 'react';
 
 type detailInfo = {
   title: string;
-  desc: string
+  desc?: string
 }
 
 export default function DetailInfo({title, desc}:detailInfo) {  
-
+  console.log(desc)
   return (
-    <div className="flex">
-    <div className="w-1/3">
-      <span className='text-xl'>{title}</span>
-    </div>
-    <div className="text-left">
-      <span>{desc}</span>
-    </div>
-  </div>
+    <>
+      {
+        desc?.length !== 0 ?
+        <div className="min-w-96 flex my-3">
+          <div className="w-1/3">
+            <span className='text-xl'>{title}</span>
+          </div>
+          <div className="text-left">
+            <span>{desc}</span>
+          </div>
+        </div>
+       : ''
+      }      
+    </>
   )
 }

@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div className='w-full h-8 text-center'>Footer</div>
+    <div className='w-full h-8 text-center'></div>
   )
 }

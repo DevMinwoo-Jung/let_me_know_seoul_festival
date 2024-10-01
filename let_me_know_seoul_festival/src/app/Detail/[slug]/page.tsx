@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import DetailInfo from "./DetailInfo";
+import { FaHome } from "react-icons/fa";
+
 
 
 
@@ -37,17 +39,17 @@ export default function DetailPage() {
               <DetailInfo title={"장소"} desc={PLACE}/>
               <DetailInfo title={"유/무료"} desc={IS_FREE}/>
               <DetailInfo title={"가격"} desc={USE_FEE}/>
-              <DetailInfo title={"티멧"} desc={TICKET}/>
               <DetailInfo title={"등록일"} desc={RGSTDATE}/>
               <DetailInfo title={"기관명"} desc={ORG_NAME}/>
               <DetailInfo title={"연령층"} desc={USE_TRGT}/>
               <DetailInfo title={"유/무료"} desc={PLAYER}/>
               <DetailInfo title={"프로그램"} desc={PROGRAM}/>
               <DetailInfo title={"설명"} desc={ETC_DESC}/>
-              <div>
+              <div className="flex">
                 <Link href={ORG_LINK} target='new'>
                   홈페이지 가기
                 </Link>
+                <FaHome className="ml-3 text-2xl"/>
               </div>
             </div>
           </div>
