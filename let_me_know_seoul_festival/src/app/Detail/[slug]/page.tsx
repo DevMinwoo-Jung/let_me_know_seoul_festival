@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
-import DetailInfo from "./detailInfo";
+import DetailInfo from "./DetailInfo";
+
 
 
 export default function DetailPage() {
@@ -18,13 +19,13 @@ export default function DetailPage() {
 
     const festivalDetail = festivals.filter((festival:PerformanceI) => festival.HMPG_ADDR.slice(festival.HMPG_ADDR.lastIndexOf('cultcode') + 9, festival.HMPG_ADDR.indexOf('&')) === slug)[0]
     
-    const { GUNAME, TITLE, DATE, MAIN_IMG, ORG_LINK, IS_FREE, THEMECODE, TICKET, RGSTDATE, 
+    const { CODENAE, GUNAME, TITLE, DATE, MAIN_IMG, ORG_LINK, IS_FREE, THEMECODE, TICKET, RGSTDATE, 
       HMPG_ADDR, PLACE, ORG_NAME, USE_TRGT, USE_FEE, PLAYER, PROGRAM, ETC_DESC, 
     	 } = festivalDetail;
 
     return (
       <> 
-        <div className="w-screen h-screen">
+        <div className="w-screen h-detailPage">
           <div className="w-3/4 flex m-auto">
             <Image className='m-auto' src={MAIN_IMG} alt={MAIN_IMG} width={450} height={500}/>                
             <div className='w-1/2 h-full mx-4 mt-0' key={MAIN_IMG}>

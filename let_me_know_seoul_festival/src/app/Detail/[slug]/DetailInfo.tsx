@@ -10,7 +10,7 @@ export default function DetailInfo({title, desc}:detailInfo) {
   return (
     <div className="flex">
     <div className="w-1/3">
-      <span className='text-2xl'>{title}</span>
+      <span className='text-xl'>{title}</span>
     </div>
     <div className="text-left">
       <span>{desc}</span>
