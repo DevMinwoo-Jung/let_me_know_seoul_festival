@@ -21,9 +21,9 @@ export default function DetailPage() {
 
     const festivalDetail = festivals.filter((festival:PerformanceI) => festival.HMPG_ADDR.slice(festival.HMPG_ADDR.lastIndexOf('cultcode') + 9, festival.HMPG_ADDR.indexOf('&')) === slug)[0]
     
-    const { CODENAE, GUNAME, TITLE, DATE, MAIN_IMG, ORG_LINK, IS_FREE, THEMECODE, TICKET, RGSTDATE, 
-      HMPG_ADDR, PLACE, ORG_NAME, USE_TRGT, USE_FEE, PLAYER, PROGRAM, ETC_DESC, 
-    	 } = festivalDetail;
+    const {  GUNAME, TITLE, DATE, MAIN_IMG, ORG_LINK, IS_FREE, RGSTDATE, 
+        PLACE, ORG_NAME, USE_TRGT, USE_FEE, PLAYER, PROGRAM, ETC_DESC, 
+    	} = festivalDetail;
 
     return (
       <> 

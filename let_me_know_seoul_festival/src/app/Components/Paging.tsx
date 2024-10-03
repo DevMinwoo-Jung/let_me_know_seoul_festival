@@ -19,29 +19,26 @@ export default function Paging() {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    console.log(currentPage, pageArray[0]);
+
     const newStart = (currentPage - 1) * 25 + 1; // Assuming 25 items per page
     const newEnd = currentPage * 25;
-  
-    dispatch(setPageNumber({ currentPage }));
-    dispatch(setStartNumber({ startNumber: newStart }));
-    dispatch(setEndNumber({ endNumber: newEnd }));
-    
+      
     if (totalCount > 0) {
       if(totalPageCount < 5){
-        setPageArray([...[], ... Array.from({ length: totalPageCount }, (_, i) => currentPage + i)]);
+        setPageArray([...[], ... Array.from({ length: totalPageCount }, (_, i) => 1 + i)]);
       } else {
-        if(!pageArray.includes(currentPage)){
           if(currentPage >= totalPageCount - 4){
             setPageArray([...[], ... Array.from({ length: pagingNum }, (_, i) => (totalPageCount - 4) + i)]);
           } else {
             setPageArray([...[], ... Array.from({ length: pagingNum }, (_, i) => currentPage + i)]);
           }
-        }
-
-      }
+      }  
     }
-  }, [currentPage, totalCount, totalPageCount, dispatch, pageArray]);
+    dispatch(setPageNumber({ currentPage }));
+    dispatch(setStartNumber({ startNumber: newStart }));
+    dispatch(setEndNumber({ endNumber: newEnd }));
+    
+  }, [currentPage, totalCount, totalPageCount, dispatch]);
 
   const setLastPage = () => {
     dispatch(setPageNumber({currentPage: totalPageCount}));
@@ -53,12 +50,13 @@ export default function Paging() {
 
   const setPrevPage = () => {
     if(pageArray[4] - pagingNum > 0){
-      if(pageArray[4] - pagingNum < 0){
+      if(currentPage - pagingNum < 0) {
         dispatch(setPageNumber({currentPage:1}));
       } else {
         dispatch(setPageNumber({currentPage:currentPage - pagingNum}));
-
       }
+    } else {
+      dispatch(setPageNumber({currentPage:1}));
     }
   }
 

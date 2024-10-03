@@ -15,18 +15,9 @@ export default function CategoryBox() {
     setToggle((toggle) => !toggle)
   }
 
-  const [queryParams, setQueryParams] = useState<{ start: string; end: string; title?: string; codeName?: string; date?: string }>({
-    start: '1',
-    end: '25',
-  });
-
-  const { data, error, isLoading } = useGetFestivalPerPageQuery({
-    start: queryParams.start,
-    end: queryParams.end,
-    title: queryParams.title,
-    codeName: queryParams.codeName,
-    date: queryParams.date
-  });
+  const { data, error, isLoading } = 
+  useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString(), codeName, title, date})
+  
 
   const doSetCodeName = (param:string) => {
 
@@ -44,13 +35,12 @@ export default function CategoryBox() {
   }
 
   useEffect(()=>{
-    setQueryParams({ start: startNumber.toString(), end: endNumber.toString(), codeName, title, date });
     if (data && data.culturalEventInfo) {
       dispatch(setTotalCount({
         totalCount: data.culturalEventInfo.list_total_count,
       }));
       dispatch(setFestivals({
-        festivals: data.culturalEventInfo.row, // API에서 받아온 데이터에 맞게 수정
+        festivals: data.culturalEventInfo.row, 
       }));
     }
 

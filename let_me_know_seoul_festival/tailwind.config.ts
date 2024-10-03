@@ -17,7 +17,8 @@ const config: Config = {
         'search': '420px',
       },
       height:{
-        'detailPage': '75vh'
+        'detailPage': '75vh',
+        'maingPage':  '1640px'
       },
       lineHeight: {
         'imgLineHeight': '50px'

@@ -8,6 +8,5 @@ module.exports = {
         pathname: '/cmmn/file/getImage.do/**',
       },
     ],
-    domains: ['culture.seoul.go.kr'],
   },
 }

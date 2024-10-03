@@ -21,18 +21,16 @@ export default function Search() {
     end: '25',
   });
 
-  const { data, error, isLoading } = useGetFestivalPerPageQuery({
-    start: queryParams.start,
-    end: queryParams.end,
-    title: queryParams.title,
-    codeName: queryParams.codeName,
-    date: queryParams.date
-  });
+  const { startNumber, endNumber, codeName, title, date } = useSelector(
+    (state: any) => state.festivals
+  );
+
+  const { data, error, isLoading } = 
+  useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString(), codeName, title, date})
 
   const clearInput = () => {
     setKeyword(" ");
     setCancelBtn(false);
-    activeButton();
   }
 
   const keywordDispatch = (param:string) => {
@@ -47,16 +45,8 @@ export default function Search() {
   }
 
   
-
-  const { startNumber, endNumber, codeName, date } = useSelector((state: any) => state.festivals);
-
   const { borderHighlight, showSearchIcon } = useSelector((state: any) => state.reaction);
 
-  
-  // Function to update the query parameters and trigger the query
-  const activeButton = () => {
-    setQueryParams({ start: startNumber.toString(), end: endNumber.toString(),  codeName, title: keyword, date });
-  };
 
   const activeEnter = (e: any) => {
     if (e.key === 'Enter') {
@@ -65,7 +55,6 @@ export default function Search() {
         title: e.target.value, 
       }));
       dispatch(setPageNumber({currentPage:1}));       
-      activeButton();
     }
   };
 
@@ -102,7 +91,7 @@ export default function Search() {
       }));    
     } else {
         dispatch(setFestivals({
-          festivals: [], // API에서 받아온 데이터에 맞게 수정
+          festivals: [], 
         }));
         dispatch(setTotalCount({
           totalCount: 0,

@@ -41,11 +41,11 @@ if(isLoading){
 
   return (
     <>
-      <main className="block min-h-screen">
+      <div className="block h-maingPage">
         <Search/>
         <FestivalItems />
         <Paging/>
-      </main>
+      </div>
     </>
   );
 }
