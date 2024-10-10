@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/image';
 import React from 'react'
 
 export default function Header() {
@@ -6,7 +6,7 @@ export default function Header() {
     <div>
       <div className='w-screen h-28 m-auto items-center flex'>
         <div className='flex'>
-          <span className='font-extrabold text-xl ml-7'>About</span>
+          {/* <span className='font-extrabold text-xl ml-7'>About</span> */}
         </div>
         <div className='mx-auto'>
           <Image
@@ -14,6 +14,8 @@ export default function Header() {
           width={300}
           height={150}
           alt="Logo"
+          priority={false}
+          style={{ width: 'auto', height: 'auto' }}
           />
         </div>
       </div>

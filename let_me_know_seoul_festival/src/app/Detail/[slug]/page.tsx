@@ -7,13 +7,8 @@ import { useSelector } from "react-redux";
 import DetailInfo from "./DetailInfo";
 import { FaHome } from "react-icons/fa";
 
-
-
-
 export default function DetailPage() {
     const { slug } = useParams();
-
-    console.log(slug)
 
     const { festivals } = useSelector(
       (state: any) => state.festivals
