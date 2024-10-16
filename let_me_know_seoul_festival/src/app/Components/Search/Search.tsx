@@ -16,11 +16,6 @@ export default function Search() {
   const [cancelBtn, setCancelBtn] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
   
-  const [queryParams, setQueryParams] = useState<{ start: string; end: string; title?: string; codeName?: string; date?: string }>({
-    start: '1',
-    end: '25',
-  });
-
   const { startNumber, endNumber, codeName, title, date } = useSelector(
     (state: any) => state.festivals
   );

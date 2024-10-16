@@ -1,6 +1,6 @@
 export interface PerformanceI {
   CODENAME: string;
-  GUNAME: string;
+  GUNAME?: string;
   TITLE: string;
   DATE: string;
   PLACE: string;

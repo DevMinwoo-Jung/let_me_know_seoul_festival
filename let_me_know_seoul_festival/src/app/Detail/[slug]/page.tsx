@@ -1,20 +1,49 @@
-'use client'
 import { PerformanceI } from "@/app/Utils/dataType";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useSelector } from "react-redux";
 import DetailInfo from "./DetailInfo";
 import { FaHome } from "react-icons/fa";
+import { SERVICEKEY } from "@/app/API/festivalEndPoint";
 
-export default function DetailPage() {
-    const { slug } = useParams();
+export async function generateStaticParams() {
+ 
+  try {
+    const festivals = await fetch(`http://openapi.seoul.go.kr:8088/${SERVICEKEY}/json/culturalEventInfo/1/25`)
+      .then((res) => res.json());
 
-    const { festivals } = useSelector(
-      (state: any) => state.festivals
-    );
+    if (!festivals || !festivals.culturalEventInfo || festivals.culturalEventInfo.length === 0) {
+      return [{ slug: 'not-found' }];
+    }
 
-    const festivalDetail = festivals.filter((festival:PerformanceI) => festival.HMPG_ADDR.slice(festival.HMPG_ADDR.lastIndexOf('cultcode') + 9, festival.HMPG_ADDR.indexOf('&')) === slug)[0]
+    return festivals.culturalEventInfo.row.map((festival: PerformanceI) => ({
+      slug: festival.TITLE,
+    }));
+  } catch (error) {
+    console.error("Failed to fetch festival data:", error);
+    return [{ slug: 'not-found' }];
+  }
+
+}
+
+
+export default async function DetailPage({params}:any) {
+  
+  const festivalsFetch = await fetch(`http://openapi.seoul.go.kr:8088/48504d46446d696e373365494c7848/json/culturalEventInfo/1/25/ /${(params.slug)}`)
+  .then((res) => res.json());
+
+  console.log(festivalsFetch)
+  
+  if(festivalsFetch.culturalEventInfo.list_total_count !== 1){
+    return '없음'
+  }
+  
+
+  // const festivalDetail = festivalsFetch.culturalEventInfo.row.find(
+  //   (festival: PerformanceI) => festival.TITLE === decodeURI(params.slug)
+  // );
+
+  const festivalDetail = festivalsFetch.culturalEventInfo.row[0];
+  
     
     const {  GUNAME, TITLE, DATE, MAIN_IMG, ORG_LINK, IS_FREE, RGSTDATE, 
         PLACE, ORG_NAME, USE_TRGT, USE_FEE, PLAYER, PROGRAM, ETC_DESC, 

@@ -10,8 +10,9 @@ module.exports = {
       },
     ],
   },
-  // assetPrefix:
-  // process.env.NODE_ENV === "production"
-  //   ? "https://devminwoo-jung.github.io/let_me_know_seoul_festival"
-  //   : "http://localhost:3000/",
+  assetPrefix:
+  process.env.NODE_ENV === "production"
+    ? "https://devminwoo-jung.github.io/let_me_know_seoul_festival"
+    : "",
+  output: 'export', // 여기에 추가
 }

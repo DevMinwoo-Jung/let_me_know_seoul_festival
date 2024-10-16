@@ -10,6 +10,7 @@ export default function FestivalItem(props:any) {
 
   const { CODENAME, GUNAME, TITLE, DATE, HMPG_ADDR, MAIN_IMG } = props.info;
   const festivalCode = HMPG_ADDR.slice((HMPG_ADDR.lastIndexOf('cultcode') + 9), HMPG_ADDR.indexOf('&'));
+
   const [detailToggle, setDetailToggle] = useState(false);
 
   const setToggle = (bool:boolean) => {
@@ -34,7 +35,7 @@ export default function FestivalItem(props:any) {
                   <div>
                     <p className='leading-8'>{TITLE}</p>
                     <p>{DATE}</p>
-                    <Link className='min-w-80 min-h-72' href={`/Detail/${festivalCode}`}>
+                    <Link className='min-w-80 min-h-72' href={`/Detail/${encodeURI(TITLE)}`}>
                       <p>자세히 보기</p>
                       <FaArrowUp className="animate-bounce w-6 h-6 m-auto"/>
                     </Link>
