@@ -27,6 +27,7 @@ export default function Paging() {
       if(totalPageCount < 5){
         setPageArray([...[], ... Array.from({ length: totalPageCount }, (_, i) => 1 + i)]);
       } else {
+        if(!pageArray.includes(currentPage))
           if(currentPage >= totalPageCount - 4){
             setPageArray([...[], ... Array.from({ length: pagingNum }, (_, i) => (totalPageCount - 4) + i)]);
           } else {

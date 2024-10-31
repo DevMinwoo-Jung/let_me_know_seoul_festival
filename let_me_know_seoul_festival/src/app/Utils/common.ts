@@ -96,3 +96,6 @@ function convertTimeToTwentyFourHour(time:string){
   }
 
 }
+
+
+export const regTitle = /^[^0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]+/;

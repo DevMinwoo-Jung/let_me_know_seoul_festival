@@ -6,7 +6,6 @@ type detailInfo = {
 }
 
 export default function DetailInfo({title, desc}:detailInfo) {  
-  console.log(desc)
   return (
     <>
       {

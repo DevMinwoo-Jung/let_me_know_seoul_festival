@@ -1,26 +1,28 @@
 'use client'
-import { PerformanceI } from "@/app/Utils/dataType";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useSelector } from "react-redux";
 import DetailInfo from "./DetailInfo";
 import { FaHome } from "react-icons/fa";
 
-
-
+import React from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "next/navigation";
 
 export default function DetailPage() {
-    const { slug } = useParams();
 
-    console.log(slug)
+  let { festivals } = useSelector((state: any) => state.festivals);
 
-    const { festivals } = useSelector(
-      (state: any) => state.festivals
-    );
+  if(festivals.length === 0){
+    festivals = JSON.parse(localStorage.getItem('festivals')!);
+  }
 
-    const festivalDetail = festivals.filter((festival:PerformanceI) => festival.HMPG_ADDR.slice(festival.HMPG_ADDR.lastIndexOf('cultcode') + 9, festival.HMPG_ADDR.indexOf('&')) === slug)[0]
-    
+  const router = useParams();
+  const { slug } = router;
+
+
+  const festivalDetail = festivals.filter((ele:any) => ele.HMPG_ADDR.slice((ele.HMPG_ADDR.lastIndexOf('cultcode') + 9), ele.HMPG_ADDR.indexOf('&')) === slug)[0];
+
+  
     const {  GUNAME, TITLE, DATE, MAIN_IMG, ORG_LINK, IS_FREE, RGSTDATE, 
         PLACE, ORG_NAME, USE_TRGT, USE_FEE, PLAYER, PROGRAM, ETC_DESC, 
     	} = festivalDetail;

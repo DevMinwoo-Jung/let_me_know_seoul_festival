@@ -28,6 +28,11 @@ export default function Home() {
     dispatch(setTotalCount({
       totalCount: data.culturalEventInfo.list_total_count,
     }));
+    if(localStorage.getItem('festivals')){
+      localStorage.removeItem('festivals')
+    } else {
+      localStorage.setItem('festivals', JSON.stringify(data.culturalEventInfo.row))
+    }
   }
 }, [data,error, dispatch]);
 
