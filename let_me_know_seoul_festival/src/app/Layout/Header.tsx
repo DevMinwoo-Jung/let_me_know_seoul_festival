@@ -8,7 +8,7 @@ export default function Header() {
         <div className='flex'>
           {/* <span className='font-extrabold text-xl ml-7'>About</span> */}
         </div>
-        <div className='mx-auto'>
+        <div className='mx-auto laptop:w-80 mobile:w-72'>
           <Image
           src="/horizontal-logo.png"
           width={300}

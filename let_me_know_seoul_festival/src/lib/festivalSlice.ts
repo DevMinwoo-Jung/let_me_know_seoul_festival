@@ -1,9 +1,9 @@
 
-import { PerformanceI } from '@/app/Utils/dataType';
+import { FestivalI } from '@/app/Utils/dataType';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface FestivalState {
-  festivals: Array<PerformanceI>; // 데이터를 받을 형식에 맞게 타입 지정
+  festivals: Array<FestivalI>; // 데이터를 받을 형식에 맞게 타입 지정
   totalCount: number;
   currentPage: number;
   startNumber: number;
@@ -32,7 +32,7 @@ const festivals = createSlice({
   name: 'festival',
   initialState,
   reducers: {
-    setFestivals: (state, action: PayloadAction<{ festivals: PerformanceI[] }>) => {
+    setFestivals: (state, action: PayloadAction<{ festivals: FestivalI[] }>) => {
       state.festivals = action.payload.festivals;
     },
     setTotalCount: (state, action: PayloadAction<{ totalCount: number }>) => {

@@ -35,6 +35,7 @@ const config: Config = {
           
         'bigDesktop': '1680px',
         // => @media (min-width: 1680px) { ... }
+        'mobile': '320px'
       },
     },
   },

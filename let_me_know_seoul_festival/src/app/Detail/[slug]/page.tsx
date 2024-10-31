@@ -30,9 +30,9 @@ export default function DetailPage() {
     return (
       <> 
         <div className="w-screen h-detailPage">
-          <div className="w-3/4 flex m-auto">
+          <div className="mobile:w-full w-3/4 laptop:flex m-auto mobile:block">
             <Image className='m-auto' src={MAIN_IMG} alt={MAIN_IMG} width={450} height={500}/>                
-            <div className='w-1/2 h-full mx-4 mt-0' key={MAIN_IMG}>
+            <div className='mobile:w-full laptop:w-1/2 h-full mobile:mx-1 laptop:mx-4 mt-0' key={MAIN_IMG}>
               <div className="mt-8 mb-8 text-3xl font-bold">
                 <span>{TITLE}</span>
               </div>
@@ -47,11 +47,11 @@ export default function DetailPage() {
               <DetailInfo title={"유/무료"} desc={PLAYER}/>
               <DetailInfo title={"프로그램"} desc={PROGRAM}/>
               <DetailInfo title={"설명"} desc={ETC_DESC}/>
-              <div className="flex">
+              <div className="flex w-full">
+                <span className="w-1/3">홈페이지 가기</span>
                 <Link href={ORG_LINK} target='new'>
-                  홈페이지 가기
+                  <FaHome className="w-2/3 text-2xl m-auto cursor-pointer"/>    
                 </Link>
-                <FaHome className="ml-3 text-2xl"/>
               </div>
             </div>
           </div>
