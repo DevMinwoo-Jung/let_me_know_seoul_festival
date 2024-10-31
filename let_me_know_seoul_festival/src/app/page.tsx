@@ -30,6 +30,7 @@ export default function Home() {
     }));
     if(localStorage.getItem('festivals')){
       localStorage.removeItem('festivals')
+      localStorage.setItem('festivals', JSON.stringify(data.culturalEventInfo.row))
     } else {
       localStorage.setItem('festivals', JSON.stringify(data.culturalEventInfo.row))
     }
