@@ -1,4 +1,4 @@
-export interface PerformanceI {
+export interface FestivalI {
   CODENAME: string;
   GUNAME: string;
   TITLE: string;
