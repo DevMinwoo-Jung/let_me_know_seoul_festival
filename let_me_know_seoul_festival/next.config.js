@@ -16,6 +16,6 @@ module.exports = {
   },
   assetPrefix:
   process.env.NODE_ENV === "production"
-    ? "http://letmeknowseoulfestival.life/"
+    ? "https://letmeknowseoulfestival.life/"
     : "",
 }
