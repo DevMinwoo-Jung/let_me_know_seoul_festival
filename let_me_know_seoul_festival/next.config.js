@@ -16,6 +16,6 @@ module.exports = {
   },
   assetPrefix:
   process.env.NODE_ENV === "production"
-    ? "https://devminwoo-jung.github.io/let_me_know_seoul_festival"
+    ? "http://letmeknowseoulfestival.life/"
     : "",
 }
