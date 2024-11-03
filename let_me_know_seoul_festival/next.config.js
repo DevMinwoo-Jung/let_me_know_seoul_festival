@@ -13,9 +13,7 @@ module.exports = {
     ],
     unoptimized: true,
   },
-  assetPrefix: process.env.NODE_ENV === "production"
-    ? "https://letmeknowseoulfestival.life/"
-    : "",
+  assetPrefix: "https://letmeknowseoulfestival.life/",
   async redirects() {
     return [
       {
@@ -24,7 +22,7 @@ module.exports = {
         permanent: true,
       },
     ];
-  },
+  }, 
   async rewrites() {
     return [ 
       {
