@@ -1,7 +1,6 @@
-/**
- * @type {import('next').NextConfig}
+/** 
+ * @type {import('next').NextConfig} 
  */
-
 module.exports = {
   images: {
     remotePatterns: [
@@ -14,8 +13,7 @@ module.exports = {
     ],
     unoptimized: true,
   },
-  assetPrefix:
-  process.env.NODE_ENV === "production"
+  assetPrefix: process.env.NODE_ENV === "production"
     ? "https://letmeknowseoulfestival.life/"
     : "",
   async redirects() {
@@ -25,11 +23,14 @@ module.exports = {
         destination: 'https://letmeknowseoulfestival.life/$1',
         permanent: true,
       },
+    ];
+  },
+  async rewrites() {
+    return [
       {
         source: '/api/proxy/:path*',
-        destination: 'http://openapi.seoul.go.kr:8088/:path',
-        permanent: true,
+        destination: 'http://openapi.seoul.go.kr:8088/:path*', // Proxy API requests
       },
     ];
   },
-}
+};
