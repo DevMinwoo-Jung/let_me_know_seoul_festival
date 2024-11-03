@@ -18,4 +18,13 @@ module.exports = {
   process.env.NODE_ENV === "production"
     ? "https://letmeknowseoulfestival.life/"
     : "",
+  async redirects() {
+    return [
+      {
+        source: '/(.*)',
+        destination: 'https://letmeknowseoulfestival.life/$1',
+        permanent: true,
+      },
+    ];
+  },
 }
