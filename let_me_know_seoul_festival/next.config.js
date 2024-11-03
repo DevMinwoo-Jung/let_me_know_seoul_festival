@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         source: '/api/proxy/:path*',
-        destination: 'http://openapi.seoul.go.kr:/:path',
+        destination: 'http://openapi.seoul.go.kr:8088/:path',
         permanent: true,
       },
     ];
