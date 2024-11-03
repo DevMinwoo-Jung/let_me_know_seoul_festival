@@ -26,7 +26,7 @@ module.exports = {
     ];
   },
   async rewrites() {
-    return [
+    return [ 
       {
         source: '/api/proxy/:path*',
         destination: 'http://openapi.seoul.go.kr:8088/:path*', // Proxy API requests
