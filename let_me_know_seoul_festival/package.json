@@ -2,7 +2,6 @@
   "name": "let_me_know_seoul_festival",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://devminwoo-jung.github.io/let_me_know_seoul_festival/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
