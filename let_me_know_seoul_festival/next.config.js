@@ -25,6 +25,11 @@ module.exports = {
         destination: 'https://letmeknowseoulfestival.life/$1',
         permanent: true,
       },
+      {
+        source: '/api/proxy/:path*',
+        destination: 'http://openapi.seoul.go.kr:/:path',
+        permanent: true,
+      },
     ];
   },
 }
