@@ -19,8 +19,8 @@ module.exports = {
   async redirects() {
     return [
       {
-        source: '/(.*)',
-        destination: 'https://letmeknowseoulfestival.life/$1',
+        source: '/(.*)', 
+        destination : process.env.NODE_ENV === "production" ? 'https://letmeknowseoulfestival.life/$1' : "https://localhost:3000",
         permanent: true,
       },
     ];
