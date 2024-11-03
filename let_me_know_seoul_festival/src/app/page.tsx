@@ -1,6 +1,6 @@
 'use client'
 import { useEffect } from "react";
-import { useGetFestivalPerPageQuery } from "./API/festival";
+
 
 import Paging from "./Components/Paging";
 import { FestivalItems } from "./Components/FestivalItems/FestivalItems";
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFestivals, setTotalCount } from "@/lib/festivalSlice";
 import Search from "./Components/Search/Search";
 import Loading from "./Components/FestivalItems/Loading";
+import { useGetFestivalPerPageQuery } from "./API/festival";
 
 export default function Home() {
   
