@@ -13,14 +13,14 @@ module.exports = {
     ],
     unoptimized: true,
   },
-  assetPrefix: process.env.NODE_ENV === "production"
+  assetPrefix: process.env.NODE_ENV !== "production"
     ? "https://letmeknowseoulfestival.life/"
     : "",
   async redirects() {
     return [
       {
         source: '/(.*)', 
-        destination : process.env.NODE_ENV === "production" ? 'https://letmeknowseoulfestival.life/$1' : "https://localhost:3000",
+        destination : process.env.NODE_ENV !== "production" ? 'https://letmeknowseoulfestival.life/$1' : "https://localhost:3000",
         permanent: true,
       },
     ];
