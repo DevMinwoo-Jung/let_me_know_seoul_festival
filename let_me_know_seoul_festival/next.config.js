@@ -14,11 +14,12 @@ module.exports = {
     unoptimized: true,
   },
   assetPrefix: "http://letmeknowseoulfestival.life/",
-  async rewrites() {
-    return [ 
+  async redirects() {
+    return [
       {
-        source: '/api/proxy/:path*',
-        destination: 'http://openapi.seoul.go.kr:8088/:path*', // Proxy API requests
+        source: '/(.*)',
+        destination: 'http://letmeknowseoulfestival.life/$1',
+        permanent: true,
       },
     ];
   },
