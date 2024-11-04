@@ -10,6 +10,7 @@ import { setborderHighlight, setshowSearchIcon } from '@/lib/reactionSlice';
 import { useGetFestivalPerPageQuery } from '@/app/api/festival';
 
 
+
 export default function Search() {
 
   const dispatch = useDispatch();

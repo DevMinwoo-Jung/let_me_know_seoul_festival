@@ -4,7 +4,8 @@ import { setCodeName, setFestivals, setPageNumber, setTotalCount } from '@/lib/f
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../FestivalItems/Loading';
-import { useGetFestivalPerPageQuery } from '@/app/api/festival';
+import { useGetFestivalPerPageQuery } from '../../api/festival';
+
 
 export default function CategoryBox() {
   const dispatch = useDispatch();
