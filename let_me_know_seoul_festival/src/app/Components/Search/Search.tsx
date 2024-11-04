@@ -1,5 +1,5 @@
 'use client';
-import { useGetFestivalPerPageQuery } from '../../api/festival.js';
+
 import { setFestivals, setIsEmpty, setPageNumber, setTitle, setTotalCount } from '@/lib/festivalSlice';
 import React, { useEffect, useState } from 'react'
 import { IoIosSearch } from "react-icons/io";
@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CategoryBox from './CategoryBox';
 import Loading from '../FestivalItems/Loading';
 import { setborderHighlight, setshowSearchIcon } from '@/lib/reactionSlice';
+import { useGetFestivalPerPageQuery } from '@/app/api/festival';
 
 
 export default function Search() {

@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFestivals, setTotalCount } from "@/lib/festivalSlice";
 import Search from "./Components/Search/Search";
 import Loading from "./Components/FestivalItems/Loading";
-import { useGetFestivalPerPageQuery } from "./api/festival.js";
+import { useGetFestivalPerPageQuery } from "./api/festival";
+
 
 export default function Home() {
   

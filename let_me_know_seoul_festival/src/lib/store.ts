@@ -1,8 +1,9 @@
-import { festivalAPI } from '../app/api/festival.js';
+
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import festivals from './festivalSlice'
 import reaction from './reactionSlice'
+import { festivalAPI } from '@/app/api/festival'
 
 
 export const makeStore = () => {
