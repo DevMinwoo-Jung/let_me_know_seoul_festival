@@ -18,6 +18,17 @@ module.exports = {
     return [
       {
         source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'letmeknowseoulfestival.life', // Adjust this if you use www or subdomains
+          },
+          {
+            type: 'header',
+            key: 'x-forwarded-proto',
+            value: 'http', // Redirect only if the protocol is HTTP
+          },
+        ],
         destination: 'https://letmeknowseoulfestival.life/:path*',
         permanent: true,
       },
