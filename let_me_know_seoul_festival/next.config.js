@@ -13,7 +13,7 @@ module.exports = {
     ],
     unoptimized: true,
   },
-  assetPrefix: "https://letmeknowseoulfestival.life/",
+  assetPrefix: "http://letmeknowseoulfestival.life/",
   async redirects() {
     return [
       {
