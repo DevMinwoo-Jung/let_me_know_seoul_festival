@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CategoryBox from './CategoryBox';
 import Loading from '../FestivalItems/Loading';
 import { setborderHighlight, setshowSearchIcon } from '@/lib/reactionSlice';
-import { useGetFestivalPerPageQuery } from '@/app/API/festival';
+import { useGetFestivalPerPageQuery } from '@/app/api/festival';
 
 
 
