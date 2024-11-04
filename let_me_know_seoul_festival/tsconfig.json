@@ -19,8 +19,6 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@/components/*": ["./components/*"],
-      "@/api/*": ["./pages/api/*"] // 필요에 따라 추가
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/features/counter/counter.js"],
