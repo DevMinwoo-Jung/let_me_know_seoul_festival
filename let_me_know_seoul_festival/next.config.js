@@ -2,7 +2,7 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http', // HTTP로 변경
+        protocol: 'http', // HTTP로 유지
         hostname: 'culture.seoul.go.kr',
         port: '',
         pathname: '/cmmn/file/getImage.do/**',
@@ -10,13 +10,14 @@ module.exports = {
     ],
     unoptimized: true,
   },
-  assetPrefix: "http://letmeknowseoulfestival.life/", // HTTP로 변경
+  assetPrefix: "http://letmeknowseoulfestival.life/", // HTTP로 유지
   async redirects() {
     return [
       {
-        destination: 'https://letmeknowseoulfestival.life/$1',
+        source: '/(.*).css', // CSS 파일에 대한 요청만 HTTPS로 리디렉션
+        destination: 'https://letmeknowseoulfestival.life/$1.css',
         permanent: true,
-      }
-    ]
-  }
+      },
+    ];
+  },
 };
