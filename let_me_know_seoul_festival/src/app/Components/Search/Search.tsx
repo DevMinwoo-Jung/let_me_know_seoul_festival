@@ -1,5 +1,5 @@
 'use client';
-import { useGetFestivalPerPageQuery } from '@/app/API/festival';
+import { useGetFestivalPerPageQuery } from '@/app/api/festival';
 import { setFestivals, setIsEmpty, setPageNumber, setTitle, setTotalCount } from '@/lib/festivalSlice';
 import React, { useEffect, useState } from 'react'
 import { IoIosSearch } from "react-icons/io";

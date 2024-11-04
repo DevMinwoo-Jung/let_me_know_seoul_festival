@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import {festivalEndPoint, SERVICEKEY} from './festivalEndPoint'
+
 
 
 export const fetchExample = async () => {
