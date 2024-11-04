@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import festivals from './festivalSlice'
 import reaction from './reactionSlice'
-import { festivalAPI } from '@/app/api/festival'
+import { festivalAPI } from '@/app/API/festival'
 
 
 
