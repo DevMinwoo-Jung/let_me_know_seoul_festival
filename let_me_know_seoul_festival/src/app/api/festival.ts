@@ -23,4 +23,4 @@ export const festivalAPI = createApi({
 });
 
 // Export hooks for usage in functional components
-export const { useGetFestivalPerPageQuery } = festivalAPI;
+export const { useGetFestivalPerPageQuery } = festivalAPI; 
