@@ -11,6 +11,7 @@ import { useGetFestivalPerPageQuery } from '@/app/API/festival';
 
 
 
+
 export default function Search() {
 
   const dispatch = useDispatch();
