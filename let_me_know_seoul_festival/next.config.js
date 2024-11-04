@@ -14,4 +14,13 @@ module.exports = {
     unoptimized: true,
   },
   assetPrefix: "https://letmeknowseoulfestival.life/",
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        destination: 'https://letmeknowseoulfestival.life/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
