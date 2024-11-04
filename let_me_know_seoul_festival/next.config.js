@@ -11,4 +11,4 @@ module.exports = {
     unoptimized: true,
   },
   assetPrefix: "http://letmeknowseoulfestival.life/", // HTTP로 유지
-};
+}; 
