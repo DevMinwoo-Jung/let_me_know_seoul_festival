@@ -29,7 +29,7 @@ module.exports = {
             value: 'http', // Redirect only if the protocol is HTTP
           },
         ],
-        destination: 'https://letmeknowseoulfestival.life/:path*',
+        destination: 'http://letmeknowseoulfestival.life/:path*',
         permanent: true,
       },
     ];
