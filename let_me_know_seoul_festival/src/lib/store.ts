@@ -1,4 +1,4 @@
-import { festivalAPI } from './../app/api/festival';
+import { festivalAPI } from '../app/api/festival.js';
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import festivals from './festivalSlice'
