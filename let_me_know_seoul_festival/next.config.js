@@ -1,8 +1,11 @@
+/** 
+ * @type {import('next').NextConfig} 
+ */
 module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http', // HTTP로 유지
+        protocol: 'https',
         hostname: 'culture.seoul.go.kr',
         port: '',
         pathname: '/cmmn/file/getImage.do/**',
@@ -10,5 +13,13 @@ module.exports = {
     ],
     unoptimized: true,
   },
-  assetPrefix: "http://letmeknowseoulfestival.life/", // HTTP로 유지
-}; 
+  assetPrefix: "https://letmeknowseoulfestival.life/",
+  async rewrites() {
+    return [ 
+      {
+        source: '/api/proxy/:path*',
+        destination: 'http://openapi.seoul.go.kr:8088/:path*', // Proxy API requests
+      },
+    ];
+  },
+};
