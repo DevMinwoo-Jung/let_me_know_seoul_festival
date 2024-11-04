@@ -1,5 +1,5 @@
 'use client'
-import { useGetFestivalPerPageQuery } from '@/app/api/festival';
+import { useGetFestivalPerPageQuery } from '../../api/festival';
 import { setCodeName, setFestivals, setPageNumber, setTotalCount } from '@/lib/festivalSlice';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
