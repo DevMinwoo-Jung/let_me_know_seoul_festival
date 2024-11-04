@@ -18,7 +18,7 @@ module.exports = {
     return [
       {
         source: '/(.*)',
-        destination: 'http://letmeknowseoulfestival.life/$1',
+        destination: 'https://letmeknowseoulfestival.life/$1',
         permanent: true,
       },
     ];
