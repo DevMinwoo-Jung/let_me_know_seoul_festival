@@ -13,7 +13,8 @@ module.exports = {
     ],
     unoptimized: true,
   },
-  assetPrefix: "https://letmeknowseoulfestival.life/",
+  
+  assetPrefix: process.env.NODE_ENV === "production" ? "https://letmeknowseoulfestival.life/" : "",
   async rewrites() {
     return [
       {

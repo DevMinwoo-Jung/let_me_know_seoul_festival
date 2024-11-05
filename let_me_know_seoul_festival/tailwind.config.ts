@@ -38,6 +38,9 @@ const config: Config = {
         'mobile': '320px'
       },
     },
+    fontFamily: {
+      NotoSansKR: ['NotoSansKR'],
+    },
   },
   plugins: [],
 };

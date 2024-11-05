@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 
 export default function FestivalHover(props:any) {
-
+  console.log(props)
   const { CODENAME, GUNAME, TITLE, DATE, HMPG_ADDR } = props.info;
   const festivalCode = HMPG_ADDR.slice((HMPG_ADDR.lastIndexOf('cultcode') + 9), HMPG_ADDR.indexOf('&'));
   const [detailToggle, setDetailToggle] = useState(false);
@@ -18,8 +18,7 @@ export default function FestivalHover(props:any) {
     <>
     {
       detailToggle === false ? null : 
-      <>
-        <div onMouseEnter={() => setToggle(true)} onMouseLeave={() => setToggle(false)} className='bg-slate-500 opacity-70 m-auto w-80 h-72 absolute text-white font-bold text-center leading-imgLineHeight'>
+        <div onMouseEnter={() => setToggle(true)} onMouseLeave={() => setToggle(false)} className='bg-slate-500 opacity-70 m-auto w-80 h-72 absolute font-extralight text-white text-center leading-imgLineHeight'>
           <div>
             <p>{CODENAME}</p>
             <p>{GUNAME}</p>
@@ -32,7 +31,6 @@ export default function FestivalHover(props:any) {
             </Link>
           </div>
         </div>
-      </>
     }
     </>
   )

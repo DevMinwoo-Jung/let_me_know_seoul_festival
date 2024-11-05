@@ -55,8 +55,7 @@ export default function CategoryBox() {
 
 
   return (
-    <>
-      <div className='w-36 border-l-2 text-center'>
+      <div className='w-36 border-l-2 text-center font-NotoSansKR font-normal'>
       <p className='cursor-pointer m-1' onClick={toggleCategoreis}>
         {
           codeName === " " ? "전체" : codeName
@@ -77,6 +76,5 @@ export default function CategoryBox() {
         : null
       }
       </div>
-    </>
   )
 }

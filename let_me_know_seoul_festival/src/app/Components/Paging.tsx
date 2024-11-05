@@ -74,18 +74,20 @@ export default function Paging() {
 
 
   return (
-      <div className='max-w-80 min-w-60 flex leading-4 justify-evenly mx-auto mt-12'>
-        <BiFirstPage className='cursor-pointer' onClick={setFirstPage}/>
-        <MdArrowBackIos className='cursor-pointer' onClick={setPrevPage}/>
-        {
-          pageArray.map((ele: number, index: number) => (
-            currentPage === ele 
-              ? <span key={index} className='mx-2 font-extrabold cursor-pointer' onClick={setCurrnetPageNumber}>{ele}</span>
-              : <span key={index} className='mx-2 cursor-pointer' onClick={setCurrnetPageNumber}>{ele}</span>
-          ))
-        }
-        <MdArrowForwardIos className='cursor-pointer' onClick={setNextPage}/>
-        <BiLastPage className='cursor-pointer' onClick={setLastPage}/>
-      </div>
+    <div className='relative min-w-full h-14'> 
+        <div className='absolute max-w-80 min-w-60 flex leading-3 justify-evenly top-1/3 left-1/2 m-0'>
+          <BiFirstPage className='cursor-pointer' onClick={setFirstPage}/>
+          <MdArrowBackIos className='cursor-pointer' onClick={setPrevPage}/>
+          {
+            pageArray.map((ele: number, index: number) => (
+              currentPage === ele 
+                ? <span key={index} className='mx-2 font-extrabold cursor-pointer' onClick={setCurrnetPageNumber}>{ele}</span>
+                : <span key={index} className='mx-2 cursor-pointer' onClick={setCurrnetPageNumber}>{ele}</span>
+            ))
+          }
+          <MdArrowForwardIos className='cursor-pointer' onClick={setNextPage}/>
+          <BiLastPage className='cursor-pointer' onClick={setLastPage}/>
+        </div>
+    </div>
   )
 }

@@ -27,7 +27,7 @@ export default function FestivalItem(props:any) {
             {
               detailToggle === false ? null : 
               <>
-                <div className='rounded-xl bg-slate-500 opacity-70 m-auto w-80 h-72 absolute text-white font-bold text-center leading-imgLineHeight'>
+                <div className='rounded-xl bg-slate-500 opacity-70 m-auto w-80 h-72 absolute text-sm text-white font-semibold text-center leading-imgLineHeight'>
                   <div>
                     <p>{CODENAME}</p>
                     <p>{GUNAME}</p>

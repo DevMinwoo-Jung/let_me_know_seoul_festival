@@ -10,7 +10,6 @@ import Search from "./Components/Search/Search";
 import Loading from "./Components/FestivalItems/Loading";
 import { useGetFestivalPerPageQuery } from "@/app/api/festival";
 
-
 export default function Home() {
   
   const dispatch = useDispatch();

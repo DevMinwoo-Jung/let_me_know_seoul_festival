@@ -16,6 +16,13 @@
   }
 } */
 
+@layer base {
+  html,
+  body {
+    @apply font-NotoSansKR;
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
