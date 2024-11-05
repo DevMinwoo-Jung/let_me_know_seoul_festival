@@ -2,7 +2,7 @@ export default async function handler(req, res) {
   const { start = '1', end = '25', codeName = '', title = '', date = '' } = req.query;
 
   // Construct the full URL for the external API request
-  const url = `http://openapi.seoul.go.kr:8088/48504d46446d696e373365494c7848/json/culturalEventInfo/${start}/${end}/${codeName}/${title}/${date}`;
+  const url = `http://openapi.seoul.go.kr:8088/${process.env.NODE_APIKEY}/json/culturalEventInfo/${start}/${end}/${codeName}/${title}/${date}`;
   
   try {
     console.log("Fetching URL:", url);  // Log the URL to verify correctness
