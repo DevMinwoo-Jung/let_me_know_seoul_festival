@@ -13,7 +13,7 @@ module.exports = {
     ],
     unoptimized: true,
   },
-  
+  productionBrowserSourceMaps: false,
   assetPrefix: process.env.NODE_ENV === "production" ? "https://letmeknowseoulfestival.life/" : "",
   async rewrites() {
     return [
