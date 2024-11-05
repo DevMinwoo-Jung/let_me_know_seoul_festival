@@ -20,13 +20,11 @@ export default function FestivalItem(props:any) {
   }
 
   return (
-    <>   
       <div className='relative'>
         <div className='transition-all duration-500 hover:bg-slate-500 m-auto rounded-xl w-80 h-72 relative' key={MAIN_IMG} onMouseEnter={() => setToggle(true)} onMouseLeave={() => setToggle(false)}>
             <Image className='rounded-xl m-auto' src={MAIN_IMG} alt={MAIN_IMG} fill={true} sizes='(max-width: 768px)' quality={75} style={{ width: '100%', height: '100%' }}/>                          
             {
               detailToggle === false ? null : 
-              <>
                 <div className='rounded-xl bg-slate-500 opacity-70 m-auto w-80 h-72 absolute text-sm text-white font-semibold text-center leading-imgLineHeight'>
                   <div>
                     <p>{CODENAME}</p>
@@ -41,10 +39,8 @@ export default function FestivalItem(props:any) {
                     </Link>
                   </div>
                 </div>
-              </>
             }
         </div>
       </div>    
-    </>
   )
 }

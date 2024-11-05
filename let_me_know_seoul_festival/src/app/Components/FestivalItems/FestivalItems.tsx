@@ -13,7 +13,6 @@ export function FestivalItems() {
   }
 
   return (
-    <>
       <div className='grid laptop:grid-cols-3 desktop:grid-cols-4 bigDesktop:grid-cols-5 gap-5 p-4' key={Math.random()}>
         {
           festivals && festivals.map((ele: InfoI) => {
@@ -23,6 +22,5 @@ export function FestivalItems() {
           })
         }
       </div>
-    </>
   )
 }

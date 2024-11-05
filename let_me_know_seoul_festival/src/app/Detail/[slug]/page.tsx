@@ -28,7 +28,6 @@ export default function DetailPage() {
     	} = festivalDetail;
 
     return (
-      <> 
         <div className="w-screen h-detailPage">
           <div className="mobile:w-4/5 w-3/4 laptop:flex m-auto mobile:block">
             <Image className='m-auto' src={MAIN_IMG} alt={MAIN_IMG} width={450} height={500}/>                
@@ -56,6 +55,5 @@ export default function DetailPage() {
             </div>
           </div>
         </div>  
-      </>
     );
 }

@@ -1,7 +1,5 @@
 'use client'
 import { useEffect } from "react";
-
-
 import Paging from "./Components/Paging";
 import { FestivalItems } from "./Components/FestivalItems/FestivalItems";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,21 +37,19 @@ export default function Home() {
 }, [data,error, dispatch]);
 
 if(error) {
-  return <p>Error occurred..</p>
+  return <><p>Error occurred..</p></>;
 }
 
 if(isLoading){
-  return <Loading/>
+  return <Loading/>;
 }
 
   return (
-    <>
       <div className="block h-maingPage">
         <Search/>
         <FestivalItems />
         <Paging/>
       </div>
-    </>
   );
 }
 

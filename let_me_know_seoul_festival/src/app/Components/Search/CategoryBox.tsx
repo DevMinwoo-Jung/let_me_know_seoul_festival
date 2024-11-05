@@ -61,10 +61,8 @@ export default function CategoryBox() {
           codeName === " " ? "전체" : codeName
         }
       </p>
-      
       {
         toggle == true ?
-        <>
           <div className='z-20 rounded-xl bg-white border-cyan-950 p-2 absolute'>
             {
               codeCategory.map((ele:string) => (
@@ -72,7 +70,6 @@ export default function CategoryBox() {
                 ))
             }
           </div>
-        </>  
         : null
       }
       </div>
