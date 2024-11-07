@@ -8,19 +8,6 @@ interface getFestivalPerPageI {
   date?: string;
 }
 
-
-// export const festivalAPI = createApi({
-//   reducerPath: 'festivalAPI',
-//   baseQuery: fetchBaseQuery({ baseUrl: `${festivalEndPoint}/${SERVICEKEY}/json/culturalEventInfo` }),
-//   tagTypes: [],
-//   endpoints: (builder) => ({
-//     getFestivalPerPage: builder.query({
-//       query: ({start, end, codeName, title, date }:getFestivalPerPageI) => `/${start}/${end}/${codeName}/${title}/${date}`,
-//     }),
-//   }),
-// })
-
-
 export const festivalAPI = createApi({
   reducerPath: 'festivalAPI',
   baseQuery: fetchBaseQuery({ baseUrl: `/api/proxy` }),

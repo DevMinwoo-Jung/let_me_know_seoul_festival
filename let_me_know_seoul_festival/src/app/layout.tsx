@@ -8,6 +8,9 @@ import StoreProvider from "./StoreProvider";
 export const metadata: Metadata = {
   title: "Let Me Know Seoul Festival",
   description: "정민우가 만들었습니다",
+  icons: {
+    icon: '/picnic.png'
+  }
 };
 
 export default function RootLayout({

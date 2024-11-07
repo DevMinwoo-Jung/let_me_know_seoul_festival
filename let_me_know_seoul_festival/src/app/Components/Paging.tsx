@@ -75,7 +75,7 @@ export default function Paging() {
 
   return (
     <div className='relative min-w-full h-14'> 
-        <div className='m-auto max-w-80 min-w-60 flex leading-3 justify-evenly top-1/3 left-1/2 m-0'>
+        <div className='m-auto max-w-80 min-w-60 flex leading-3 justify-evenly top-1/3 left-1/2'>
           <BiFirstPage className='cursor-pointer' onClick={setFirstPage}/>
           <MdArrowBackIos className='cursor-pointer' onClick={setPrevPage}/>
           {
