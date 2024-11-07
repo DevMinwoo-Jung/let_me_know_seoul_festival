@@ -15,6 +15,9 @@ const config: Config = {
       },
       width: {
         'search': '420px',
+        'laptop': '1224px',
+        'desktop': '1480px',
+        'bigDesktop': '1880px',
       },
       height:{
         'detailPage': '75vh',
