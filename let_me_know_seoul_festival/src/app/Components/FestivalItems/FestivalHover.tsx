@@ -3,7 +3,6 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 
 export default function FestivalHover(props:any) {
-  console.log(props)
   const { CODENAME, GUNAME, TITLE, DATE, HMPG_ADDR } = props.info;
   const festivalCode = HMPG_ADDR.slice((HMPG_ADDR.lastIndexOf('cultcode') + 9), HMPG_ADDR.indexOf('&'));
   const [detailToggle, setDetailToggle] = useState(false);

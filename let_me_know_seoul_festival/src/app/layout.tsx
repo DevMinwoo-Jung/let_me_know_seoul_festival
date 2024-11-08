@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./styles/notoSansKR.css";
 import Header from "./Layout/Header";
-import Footer from "./Layout/Footer";
 import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
@@ -24,7 +23,6 @@ export default function RootLayout({
         <body className="w-screen overflow-x-hidden font-NotoSansKR">
           <Header/>
             <main className="w-full">{children}</main> 
-          <Footer/> 
         </body>
       </StoreProvider>
     </html>
