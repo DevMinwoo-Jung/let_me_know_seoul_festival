@@ -4,7 +4,7 @@ export default function Loading() {
 
   return (
       <div className="block min-h-screen mt-6">
-        <div className='grid laptop:grid-cols-3 desktop:grid-cols-4 bigDesktop:grid-cols-5 gap-5 p-4' key="loading">
+        <div className='grid  mx-auto mobile:grid-cols-1 tablet:w-tablet tablet:grid-cols-2 laptop:w-laptop laptop:grid-cols-3 desktop:w-desktop desktop:grid-cols-4 bigDesktop:w-bigDesktop bigDesktop:grid-cols-5 gap-5 p-4' key="loading">
           {
             [...arrayLength].map((ele, index)=>{
               return(
