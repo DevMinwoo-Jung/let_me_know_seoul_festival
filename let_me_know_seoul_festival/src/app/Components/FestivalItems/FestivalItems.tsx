@@ -12,12 +12,17 @@ export function FestivalItems() {
     return  <NoResult/>
   }
 
+  console.log(festivals.length)
+
   return (
       <div className='grid  mx-auto mobile:grid-cols-1 tablet:w-tablet tablet:grid-cols-2 laptop:w-laptop laptop:grid-cols-3 desktop:w-desktop desktop:grid-cols-4 bigDesktop:w-bigDesktop bigDesktop:grid-cols-5 gap-5 p-4' key='festivalContainer'>
         {
-          festivals && festivals.map((ele: InfoI) => {
+          festivals && festivals.map((ele: InfoI, index:number) => {
+
+            const eleKey = ele.ORG_LINK + index.toString()
+
             return (
-                <FestivalItem key={ele.ORG_LINK} info={ele}/>
+                <FestivalItem key={eleKey} info={ele}/>
             )
           })
         }
