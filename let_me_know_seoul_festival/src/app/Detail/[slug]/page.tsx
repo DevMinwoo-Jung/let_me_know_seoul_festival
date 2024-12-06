@@ -8,6 +8,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "next/navigation";
 
+import kakaoIcon from '@/asset/kakaomap_basic.png'
+import naverIcon from '@/asset/Map_Service_Icon.png'
+
 export default function DetailPage() {
 
   let { festivals } = useSelector((state: any) => state.festivals);
@@ -49,19 +52,19 @@ export default function DetailPage() {
               <div className="flex w-full pb-6">
                 <span className="w-1/3">홈페이지 가기</span>
                 <Link href={ORG_LINK} target='new'>
-                  <FaHome className="w-2/3 text-2xl m-auto cursor-pointer"/>    
+                  <FaHome className="w-[35px] h-[35px] text-2xl m-auto cursor-pointer"/>    
                 </Link>
               </div>
               <div className="flex w-full pb-6">
                 <span className="w-1/3">카카오 지도로 길 찾기</span>
                 <Link href={`https://map.kakao.com/link/map/${PLACE},${LAT},${LOT}`} target='new'>
-                  <FaHome className="w-2/3 text-2xl m-auto cursor-pointer"/>    
+                <Image className="m-auto cursor-pointer" src={kakaoIcon} alt={"kakao"} width={35} height={35}/>
                 </Link>
               </div>
               <div className="flex w-full pb-6">
                 <span className="w-1/3">네이버 지도로 길 찾기</span>
                 <Link href={`https://map.naver.com?lng=${LOT}&lat=${LAT}&title=${PLACE}`} target='new'>
-                  <FaHome className="w-2/3 text-2xl m-auto cursor-pointer"/>    
+                  <Image className="m-auto cursor-pointer" src={naverIcon} alt={"naver"} width={35} height={35}/>    
                 </Link>
               </div>
             </div>
