@@ -1,13 +1,13 @@
+'use client'
 import Image from 'next/image';
 import React from 'react'
+import HeaderSetting from './HeaderSetting';
 
 export default function Header() {
   return (
     <div>
       <div className='w-screen h-28 m-auto items-center flex'>
-        <div className='flex'>
-          {/* <span className='font-extrabold text-xl ml-7'>About</span> */}
-        </div>
+        <HeaderSetting/>
         <div className='mx-auto laptop:w-80 mobile:w-72'>
           <Image
           src="/horizontal-logo.png"

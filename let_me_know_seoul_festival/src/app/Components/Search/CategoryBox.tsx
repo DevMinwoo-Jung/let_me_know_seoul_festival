@@ -34,6 +34,9 @@ export default function CategoryBox() {
       }))
     }
     dispatch(setPageNumber({currentPage:1}));
+    dispatch(setFestivals({
+      festivals: [],
+    }));
     toggleCategoreis();
   }
 

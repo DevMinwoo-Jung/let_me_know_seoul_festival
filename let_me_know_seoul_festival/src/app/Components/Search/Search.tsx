@@ -100,7 +100,7 @@ export default function Search() {
     }
   }
 
-}, [data, dispatch, isSubmit]); // Dependency array ensures this only runs when `data` changes
+}, [isSubmit]); 
 
 if(isLoading){
   return <Loading/>

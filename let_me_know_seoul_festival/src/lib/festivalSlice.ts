@@ -3,7 +3,7 @@ import { FestivalI } from '@/app/Utils/dataType';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface FestivalState {
-  festivals: Array<FestivalI>; // 데이터를 받을 형식에 맞게 타입 지정
+  festivals: Array<FestivalI>;
   totalCount: number;
   currentPage: number;
   startNumber: number;
