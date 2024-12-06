@@ -24,7 +24,7 @@ export default function DetailPage() {
 
   
     const {  GUNAME, TITLE, DATE, MAIN_IMG, ORG_LINK, IS_FREE, RGSTDATE, 
-        PLACE, ORG_NAME, USE_TRGT, USE_FEE, PLAYER, PROGRAM, ETC_DESC, 
+        PLACE, ORG_NAME, USE_TRGT, USE_FEE, PLAYER, PROGRAM, ETC_DESC, LAT, LOT
     	} = festivalDetail;
 
     return (
@@ -49,6 +49,18 @@ export default function DetailPage() {
               <div className="flex w-full pb-6">
                 <span className="w-1/3">홈페이지 가기</span>
                 <Link href={ORG_LINK} target='new'>
+                  <FaHome className="w-2/3 text-2xl m-auto cursor-pointer"/>    
+                </Link>
+              </div>
+              <div className="flex w-full pb-6">
+                <span className="w-1/3">카카오 지도로 길 찾기</span>
+                <Link href={`https://map.kakao.com/link/map/${PLACE},${LAT},${LOT}`} target='new'>
+                  <FaHome className="w-2/3 text-2xl m-auto cursor-pointer"/>    
+                </Link>
+              </div>
+              <div className="flex w-full pb-6">
+                <span className="w-1/3">네이버 지도로 길 찾기</span>
+                <Link href={`https://map.naver.com?lng=${LOT}&lat=${LAT}&title=${PLACE}`} target='new'>
                   <FaHome className="w-2/3 text-2xl m-auto cursor-pointer"/>    
                 </Link>
               </div>
