@@ -1,6 +1,6 @@
 'use client'
 import { setIsDarkMode, setIsInfiniteMode, setShowSetting } from '@/lib/reactionSlice';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function SettingPopup() {
@@ -34,6 +34,8 @@ export default function SettingPopup() {
     dispatch(setShowSetting({
       showSetting: false, 
     }));
+    localStorage.setItem('color-theme', JSON.stringify(themeOption))
+    localStorage.setItem('pageType', JSON.stringify(scrollOption))
   }
 
   const closeSettingOption = () => {
@@ -44,31 +46,31 @@ export default function SettingPopup() {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-20">
-    <div className="w-[250px] h-[300px] bg-white rounded-lg shadow-lg p-4 relative">
+    <div className="w-[250px] h-[300px] bg-white rounded-lg shadow-lg p-4 relative dark:bg-slate-700">
       <h1 className="text-lg font-bold mb-2">Setting</h1>
       <p>Scroll Option</p>
       <div className='flex w-[200px] justify-end text-right my-3 text-base'>
-        <button className={`text-gray-600 mb-4 cursor-pointer ${scrollOption === 'page' ? 'font-extrabold': ''}`}
+        <button className={`dark:text-white text-gray-600 mb-4 cursor-pointer ${scrollOption === 'page' ? 'font-extrabold': ''}`}
           value={'page'}
           onClick={(e) => doScrollOption(e.currentTarget.value)}
           type='button'
           >Page</button>
         <p className='mx-3'>/</p>
-        <button className={`text-gray-600 mb-4 cursor-pointer ${scrollOption === 'scroll' ? 'font-extrabold' : ''}`}
+        <button className={`dark:text-white text-gray-600 mb-4 cursor-pointer ${scrollOption === 'scroll' ? 'font-extrabold' : ''}`}
           value={'scroll'}
           type='button'
           onClick={(e) => doScrollOption(e.currentTarget.value)}
         >Scroll</button>
       </div>
       <p>Theme</p>
-      <div className='flex w-[200px] justify-end my-3 text-base'>
-        <button className={`text-gray-600 mb-4 cursor-pointer ${themeOption === 'dark' ? 'font-extrabold': ''}`}
+      <div className='flex w-[200px] justify-end my-3 text-base '>
+        <button className={`dark:text-white text-gray-600 mb-4 cursor-pointer ${themeOption === 'dark' ? 'font-extrabold': ''}`}
           value='dark'
           onClick={(e) => doThemeOption(e.currentTarget.value)}
           type='button'
         >Dark</button>
         <p className='mx-3'>/</p>
-        <button className={`text-gray-600 mb-4 cursor-pointer ${themeOption === 'light' ? 'font-extrabold' : ''}`}
+        <button className={`dark:text-white text-gray-600 mb-4 cursor-pointer ${themeOption === 'light' ? 'font-extrabold' : ''}`}
           onClick={(e) => doThemeOption(e.currentTarget.value)}
           type='button'
           value='light'

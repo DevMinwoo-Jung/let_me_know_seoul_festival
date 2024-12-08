@@ -11,49 +11,37 @@ import Loading from '../FestivalItems/Loading';
 
 export default function PageMode() {
 
-  const { startNumber, endNumber, codeName, title, date, currnetPage } = useSelector(
-    (state: any) => state.festivals
-  );
-
-  const { data, error, isLoading } = 
-  useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString(), codeName, title, date})
-  
-  useEffect(() => {
-  if (data && data.culturalEventInfo && data.culturalEventInfo.row) {
-    dispatch(setFestivals({
-      festivals: data.culturalEventInfo.row, // API에서 받아온 데이터에 맞게 수정
-    }));
-    dispatch(setTotalCount({
-      totalCount: data.culturalEventInfo.list_total_count,
-    }));
-    if(localStorage.getItem('festivals')){
-      localStorage.removeItem('festivals');
-      localStorage.setItem('festivals', JSON.stringify(data.culturalEventInfo.row))
-    } else {
-      localStorage.setItem('festivals', JSON.stringify(data.culturalEventInfo.row))
-    }
-  }
-}, [data, error]);
-
-if(error) {
-  return <><p>Error occurred..</p></>;
-}
-
-if(isLoading){
-  return <Loading/>;
-}
-
-  
-  const { totalCount, currentPage  } = useSelector((state: any) => state.festivals);
-  
-  
   const pagingNum = 5;
 
+  const { startNumber, endNumber, codeName, title, date, totalCount, currentPage } = useSelector(
+    (state: any) => state.festivals
+  );
+  
   const [pageArray, setPageArray] = useState<any>([]);
   const totalPageCount = Math.ceil(totalCount / 25);
 
   const dispatch = useDispatch();
   
+  const { data, error, isLoading } = 
+  useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString(), codeName, title, date})
+  
+  useEffect(() => {
+    if (data && data.culturalEventInfo && data.culturalEventInfo.row) {
+      dispatch(setFestivals({
+        festivals: data.culturalEventInfo.row, // API에서 받아온 데이터에 맞게 수정
+      }));
+      dispatch(setTotalCount({
+        totalCount: data.culturalEventInfo.list_total_count,
+      }));
+      if(localStorage.getItem('festivals')){
+        localStorage.removeItem('festivals');
+        localStorage.setItem('festivals', JSON.stringify(data.culturalEventInfo.row))
+      } else {
+        localStorage.setItem('festivals', JSON.stringify(data.culturalEventInfo.row))
+      }
+    }
+  }, [data, error]);
+    
   useEffect(() => {
 
     const newStart = (currentPage - 1) * 25 + 1; // Assuming 25 items per page
@@ -106,6 +94,15 @@ if(isLoading){
 
   const setCurrnetPageNumber = (event:any) => {
     dispatch(setPageNumber({currentPage: Number(event.target.innerHTML)}));
+  }
+
+
+  if(error) {
+    return <><p>Error occurred..</p></>;
+  }
+
+  if(isLoading){
+    return <Loading/>;
   }
 
 

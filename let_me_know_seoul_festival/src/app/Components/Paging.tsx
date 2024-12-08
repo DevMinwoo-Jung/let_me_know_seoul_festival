@@ -9,10 +9,12 @@ export default function Paging() {
     (state: any) => state.reaction
   );
 
-  if(isInfiniteMode === 'page'){
-    return <PageMode/>
-  } else if (isInfiniteMode === 'scroll') {
-    return <ScrollMode/>
-  }
+  return(
+    <>
+      {
+        isInfiniteMode === 'page' ? <PageMode/> : <ScrollMode/>
+      }
+    </>
+  )
 
 }

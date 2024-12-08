@@ -9,12 +9,43 @@ export interface Reaction {
   isDarkMode: string;
 }
 
+
+
 const initialState:Reaction = {
   borderHighlight: false,
   showSearchIcon: true,
   showSetting: false,
-  isInfiniteMode: 'scroll',
-  isDarkMode: 'light'
+  isInfiniteMode: getScrollType(),
+  isDarkMode: getTheme()
+}
+
+
+
+function getScrollType() {
+  let pageType: any;
+
+  if (typeof window !== 'undefined') {
+    const storedPageType = localStorage.getItem('pageType');
+    pageType = storedPageType ? JSON.parse(storedPageType) : 'page';
+  } else {
+    pageType === 'scroll'
+  }
+  return pageType
+}
+
+export function getTheme() {
+  if (typeof window !== 'undefined') {
+    let themeOption = JSON.parse(localStorage.getItem('color-theme')!)
+    if (themeOption === 'dark' || localStorage.getItem('color-theme') === 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+      themeOption = 'dark'
+    } else {
+      document.documentElement.classList.remove('dark')
+      themeOption = 'light'
+    }
+    
+    return themeOption
+  }
 }
 
 const reaction = createSlice({

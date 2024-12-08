@@ -2,8 +2,6 @@ const dateObj = new Date();
 const year = dateObj.getFullYear();
 const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
 const date  = (dateObj.getDate()).toString().padStart(2, '0');
-const TODAY_FULL_DATE = getTodayFullDate();
-const TOMORROW_FULL_DATE = getTodayFullDate();
 
 export function getCurrentDate() {
 
@@ -80,22 +78,6 @@ export function getNowHours() {
 
 }
 
-function convertTimeToTwentyFourHour(time:string){
-
-  const hour = Number(time.slice (0, 2));
-
-  if(hour <= 12) {
-    if(hour === 0) {
-      return `오전 ${12}`;
-    } else {
-      return `오전 ${hour}`;
-    }
-    
-  } else  {
-    return `오후 ${hour % 12}`;
-  }
-
-}
 
 
 export const regTitle = /^[^0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]+/;

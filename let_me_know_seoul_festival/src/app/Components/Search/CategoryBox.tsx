@@ -66,7 +66,7 @@ export default function CategoryBox() {
       </p>
       {
         toggle == true ?
-          <div className='z-20 rounded-xl bg-white border-cyan-950 p-2 absolute'>
+          <div className='z-20 rounded-xl bg-white border-cyan-950 p-2 absolute dark:bg-slate-700 '>
             {
               codeCategory.map((ele:string) => (
                   <p onClick={(e:any) => doSetCodeName(e.target.outerText)} className='cursor-pointer' key={ele}>{ele}</p>

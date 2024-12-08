@@ -52,19 +52,19 @@ export default function DetailPage() {
               <div className="flex w-full pb-6">
                 <span className="w-1/3">홈페이지 가기</span>
                 <Link href={ORG_LINK} target='new'>
-                  <FaHome className="w-[35px] h-[35px] text-2xl m-auto cursor-pointer"/>    
+                  <FaHome className="w-[20px] h-[20px] text-2xl m-auto cursor-pointer"/>    
                 </Link>
               </div>
               <div className="flex w-full pb-6">
                 <span className="w-1/3">카카오 지도로 길 찾기</span>
                 <Link href={`https://map.kakao.com/link/map/${PLACE},${LAT},${LOT}`} target='new'>
-                <Image className="m-auto cursor-pointer" src={kakaoIcon} alt={"kakao"} width={35} height={35}/>
+                <Image className="m-auto cursor-pointer" src={kakaoIcon} alt={"kakao"} width={20} height={20}/>
                 </Link>
               </div>
               <div className="flex w-full pb-6">
                 <span className="w-1/3">네이버 지도로 길 찾기</span>
                 <Link href={`https://map.naver.com?lng=${LOT}&lat=${LAT}&title=${PLACE}`} target='new'>
-                  <Image className="m-auto cursor-pointer" src={naverIcon} alt={"naver"} width={35} height={35}/>    
+                  <Image className="m-auto cursor-pointer" src={naverIcon} alt={"naver"} width={20} height={20}/>    
                 </Link>
               </div>
             </div>

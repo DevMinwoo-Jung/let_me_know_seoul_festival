@@ -1,7 +1,7 @@
 'use client';
 
 import { setFestivals, setIsEmpty, setPageNumber, setTitle, setTotalCount } from '@/lib/festivalSlice';
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { IoIosSearch } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import CategoryBox from './CategoryBox';
@@ -57,23 +57,23 @@ export default function Search() {
   };
 
 
-  const setHighlight = (e:any) => {
+  const setHighlight = useCallback((e:any) => {
     dispatch(setborderHighlight({
       borderHighlight: true, 
     }));
     dispatch(setshowSearchIcon({
       showSearchIcon: false, 
     }));
-  }
+  }, [borderHighlight, showSearchIcon])
 
-  const removeHighlight = (e:any) => {
+  const removeHighlight = useCallback((e:any) => {
     dispatch(setborderHighlight({
       borderHighlight: false,
     }));
     dispatch(setshowSearchIcon({
       showSearchIcon: true, 
     }));
-  }
+  }, [borderHighlight, showSearchIcon])
 
  useEffect(() => {
   if(isSubmit){
@@ -113,16 +113,15 @@ if(isLoading){
         onMouseEnter={(e) => setHighlight(e)}
         onMouseLeave={(e) => removeHighlight(e)}
       > 
-      <div className={`w-search h-14 flex -mt-8 rounded-xl bg-white z-10 p-2  ${
-          borderHighlight ? 'border-2 border-indigo-500/50' : ''
-        }`}>
+      <div className={`w-search h-14 flex -mt-8 rounded-xl bg-white z-10 p-2 dark:bg-slate-700 
+      ${borderHighlight ? 'border-2 border-indigo-500/50' : ''}`}>
         <div className='w-full focus:border-2 flex'>
           <div className='w-1/6'>
             {
               showSearchIcon ? <IoIosSearch className='w-6 h-8'/> : ''
             }
           </div>
-          <input type="text" value={keyword} name="" id="" className='w-4/6 rounded-xl h-full focus:outline-none focus:border-none focus:shadow-none'
+          <input type="text" value={keyword} name="" id="" className='w-4/6 rounded-xl h-full focus:outline-none focus:border-none focus:shadow-none dark:bg-slate-700'
               onChange={(e) => keywordDispatch(e.target.value)}
               onKeyDown={(e) => activeEnter(e)}
           />

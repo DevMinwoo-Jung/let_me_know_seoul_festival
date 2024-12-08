@@ -63,6 +63,14 @@ export default function InfiniteScrollLogic() {
         );
   
         dispatch(setFestivals({ festivals: uniqueFestivals }));
+
+        if(localStorage.getItem('festivals')){
+          localStorage.removeItem('festivals');
+          localStorage.setItem('festivals', JSON.stringify(uniqueFestivals))
+        } else {
+          localStorage.setItem('festivals', JSON.stringify(uniqueFestivals))
+        }
+
       }
     }
   }, [data, currentPage, dispatch, isLoading]);

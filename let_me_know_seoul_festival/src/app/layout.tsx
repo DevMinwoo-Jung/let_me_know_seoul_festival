@@ -18,9 +18,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html>
       <StoreProvider>
-        <body className="w-screen overflow-x-hidden font-NotoSansKR">
+        <body className="w-screen overflow-x-hidden font-NotoSansKR bg-white dark:bg-black dark:text-white">
           <Header/>
             <main className="w-full">{children}</main> 
         </body>
