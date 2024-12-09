@@ -37,7 +37,7 @@ const config: Config = {
         'desktop': '1280px',
         // => @media (min-width: 1280px) { ... }
           
-        'bigDesktop': '1680px',
+        'bigDesktop': '1880px',
         // => @media (min-width: 1680px) { ... }
         'mobile': '320px'
       },
