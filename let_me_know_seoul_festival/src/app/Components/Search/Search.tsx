@@ -8,6 +8,7 @@ import CategoryBox from './CategoryBox';
 import Loading from '../FestivalItems/Loading';
 import { setborderHighlight, setshowSearchIcon } from '@/lib/reactionSlice';
 import { useGetFestivalPerPageQuery } from '@/app/api/festival';
+import { RootState } from '@/lib/store';
 
 
 
@@ -20,7 +21,7 @@ export default function Search() {
   const [isSubmit, setIsSubmit] = useState(false);
   
   const { startNumber, endNumber, codeName, title, date } = useSelector(
-    (state: any) => state.festivals
+    (state: RootState) => state.festivals
   );
 
   const { data, error, isLoading } = 
@@ -43,7 +44,7 @@ export default function Search() {
   }
 
   
-  const { borderHighlight, showSearchIcon } = useSelector((state: any) => state.reaction);
+  const { borderHighlight, showSearchIcon } = useSelector((state: RootState) => state.reaction);
 
 
   const activeEnter = (e: any) => {
@@ -57,7 +58,7 @@ export default function Search() {
   };
 
 
-  const setHighlight = useCallback((e:any) => {
+  const setHighlight = useCallback(() => {
     dispatch(setborderHighlight({
       borderHighlight: true, 
     }));
@@ -66,7 +67,7 @@ export default function Search() {
     }));
   }, [borderHighlight, showSearchIcon])
 
-  const removeHighlight = useCallback((e:any) => {
+  const removeHighlight = useCallback(() => {
     dispatch(setborderHighlight({
       borderHighlight: false,
     }));
@@ -109,9 +110,9 @@ if(isLoading){
   return (
     <div
         className="w-screen flex justify-center leading-9"
-        onClick={(e) => setHighlight(e)}
-        onMouseEnter={(e) => setHighlight(e)}
-        onMouseLeave={(e) => removeHighlight(e)}
+        onClick={setHighlight}
+        onMouseEnter={setHighlight}
+        onMouseLeave={removeHighlight}
       > 
       <div className={`w-search h-14 flex -mt-8 rounded-xl bg-white z-10 p-2 dark:bg-slate-700 
       ${borderHighlight ? 'border-2 border-indigo-500/50' : ''}`}>

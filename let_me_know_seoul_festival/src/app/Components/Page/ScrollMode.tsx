@@ -10,6 +10,7 @@ import {
   setStartNumber,
   setTotalCount,
 } from '@/lib/festivalSlice';
+import { RootState } from '@/lib/store';
 
 export default function InfiniteScrollLogic() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export default function InfiniteScrollLogic() {
     title, 
     date, 
     totalCount 
-  } = useSelector((state: any) => state.festivals);
+  } = useSelector((state: RootState) => state.festivals);
   
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   
@@ -38,7 +39,7 @@ export default function InfiniteScrollLogic() {
   );
   
   const { data, isLoading, isFetching } = useGetFestivalPerPageQuery(queryParams, {
-    skip: festivals.length >= totalCount // Prevent unnecessary fetches
+    skip: festivals.length >= totalCount
   });
   
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function InfiniteScrollLogic() {
       if (newFestivals.length > 0) {
         const mergedFestivals = [...festivals, ...newFestivals];
         
-        // Remove duplicates based on ORG_LINK
+        // ORG_LINK로 중복 제거
         const uniqueFestivals = mergedFestivals.filter(
           (festival, index, self) =>
             index === self.findIndex((f) => f.ORG_LINK === festival.ORG_LINK)

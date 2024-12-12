@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setEndNumber, setFestivals, setPageNumber, setStartNumber, setTotalCount } from '@/lib/festivalSlice';
 import { useGetFestivalPerPageQuery } from '@/app/api/festival';
 import Loading from '../FestivalItems/Loading';
+import { RootState } from '@/lib/store';
 
 export default function PageMode() {
 
   const pagingNum = 5;
 
   const { startNumber, endNumber, codeName, title, date, totalCount, currentPage } = useSelector(
-    (state: any) => state.festivals
+    (state: RootState) => state.festivals
   );
   
   const [pageArray, setPageArray] = useState<any>([]);

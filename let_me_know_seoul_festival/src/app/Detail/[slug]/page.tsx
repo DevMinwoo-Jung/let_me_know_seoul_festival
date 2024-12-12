@@ -10,10 +10,12 @@ import { useParams } from "next/navigation";
 
 import kakaoIcon from '@/asset/kakaomap_basic.png'
 import naverIcon from '@/asset/Map_Service_Icon.png'
+import { RootState } from "@/lib/store";
+import { FestivalI } from "@/app/Utils/dataType";
 
 export default function DetailPage() {
 
-  let { festivals } = useSelector((state: any) => state.festivals);
+  let { festivals } = useSelector((state: RootState) => state.festivals);
 
   if(festivals.length === 0){
     festivals = JSON.parse(localStorage.getItem('festivals')!);
@@ -23,7 +25,7 @@ export default function DetailPage() {
   const { slug } = router;
 
 
-  const festivalDetail = festivals.filter((ele:any) => ele.HMPG_ADDR.slice((ele.HMPG_ADDR.lastIndexOf('cultcode') + 9), ele.HMPG_ADDR.indexOf('&')) === slug)[0];
+  const festivalDetail = festivals.filter((ele:FestivalI) => ele.HMPG_ADDR.slice((ele.HMPG_ADDR.lastIndexOf('cultcode') + 9), ele.HMPG_ADDR.indexOf('&')) === slug)[0];
 
   
     const {  GUNAME, TITLE, DATE, MAIN_IMG, ORG_LINK, IS_FREE, RGSTDATE, 

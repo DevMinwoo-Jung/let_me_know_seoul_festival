@@ -1,12 +1,13 @@
 'use client'
 import { setIsDarkMode, setIsInfiniteMode, setShowSetting } from '@/lib/reactionSlice';
-import React, { useEffect, useState } from 'react'
+import { RootState } from '@/lib/store';
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function SettingPopup() {
 
   const { isDarkMode, isInfiniteMode } = useSelector(
-    (state: any) => state.reaction
+    (state: RootState) => state.reaction
   );
 
   const dispatch = useDispatch();
