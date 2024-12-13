@@ -51,8 +51,6 @@ export default function Search() {
   const activeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
     let enterKeyCode = getKeyCodeByUserAgnet();
-    alert((e.target as HTMLInputElement).value)
-    alert(enterKeyCode)
     if (Number(e.code) === enterKeyCode || e.code === 'Enter') {
       setIsSubmit(true);
       dispatch(setTitle({
