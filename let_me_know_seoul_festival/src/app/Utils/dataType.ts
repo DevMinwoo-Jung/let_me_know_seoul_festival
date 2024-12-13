@@ -28,7 +28,7 @@ export interface InfoI {
   GUNAME?: string;
   TITLE?: string;
   DATE?: string;
-  MAIN_IMG?: string;
-  HMPG_ADDR?: string;
+  MAIN_IMG: string;
+  HMPG_ADDR: string;
   ORG_LINK?: string;
 }
