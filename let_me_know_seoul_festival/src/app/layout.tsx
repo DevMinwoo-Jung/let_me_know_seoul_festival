@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html suppressHydrationWarning={true}>
       <StoreProvider>
         <body className="w-screen overflow-x-hidden font-NotoSansKR bg-white dark:bg-black dark:text-white">
           <Header/>

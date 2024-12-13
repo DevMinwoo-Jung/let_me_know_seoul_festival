@@ -17,7 +17,7 @@ export default function Header() {
                         width={300}
                         height={150}
                         alt="Logo"
-                        priority={false}
+                        priority={true}
                         style={{ width: 'auto', height: 'auto' }}
                     />
                 </div>

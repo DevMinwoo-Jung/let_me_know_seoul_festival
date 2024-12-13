@@ -9,6 +9,7 @@ import Loading from '../FestivalItems/Loading';
 import { setborderHighlight, setshowSearchIcon } from '@/lib/reactionSlice';
 import { useGetFestivalPerPageQuery } from '@/app/api/festival';
 import { RootState } from '@/lib/store';
+import { getKeyCodeByUserAgnet } from '@/app/Utils/common';
 
 
 
@@ -47,11 +48,13 @@ export default function Search() {
   const { borderHighlight, showSearchIcon } = useSelector((state: RootState) => state.reaction);
 
 
-  const activeEnter = (e: any) => {
-    if (e.key === 'Enter') {
+  const activeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+
+    let enterKeyCode = getKeyCodeByUserAgnet();
+    if (Number(e.code) === enterKeyCode || e.code === 'Enter') {
       setIsSubmit(true);
       dispatch(setTitle({
-        title: e.target.value, 
+        title: (e.target as HTMLInputElement).value, 
       }));
       dispatch(setPageNumber({currentPage:1}));       
     }

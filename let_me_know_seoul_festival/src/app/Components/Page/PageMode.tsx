@@ -18,7 +18,7 @@ export default function PageMode() {
     (state: RootState) => state.festivals
   );
   
-  const [pageArray, setPageArray] = useState<any>([]);
+  const [pageArray, setPageArray] = useState<number[]>([]);
   const totalPageCount = Math.ceil(totalCount / 25);
 
   const dispatch = useDispatch();
