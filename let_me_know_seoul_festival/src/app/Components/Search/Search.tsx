@@ -11,9 +11,6 @@ import { useGetFestivalPerPageQuery } from '@/app/api/festival';
 import { RootState } from '@/lib/store';
 import { getKeyCodeByUserAgnet } from '@/app/Utils/common';
 
-
-
-
 export default function Search() {
 
   const dispatch = useDispatch();
@@ -51,7 +48,7 @@ export default function Search() {
   const activeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
     let enterKeyCode = getKeyCodeByUserAgnet();
-    if (Number(e.code) === enterKeyCode || e.code === 'Enter') {
+    if (Number(e.code) === enterKeyCode || e.code === 'Enter' || e.key === 'Enter') {
       setIsSubmit(true);
       dispatch(setTitle({
         title: (e.target as HTMLInputElement).value, 
@@ -59,7 +56,6 @@ export default function Search() {
       dispatch(setPageNumber({currentPage:1}));       
     }
   };
-
 
   const setHighlight = useCallback(() => {
     dispatch(setborderHighlight({
