@@ -19,7 +19,7 @@ export default function CategoryBox() {
     setToggle((toggle) => !toggle)
   }
 
-  const { data, error, isLoading } = 
+  const { data, isLoading } = 
   useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString(), codeName, title, date})
   
 

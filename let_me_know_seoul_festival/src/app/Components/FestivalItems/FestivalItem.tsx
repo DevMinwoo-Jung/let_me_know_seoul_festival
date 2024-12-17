@@ -1,5 +1,5 @@
 'use client';
-import { FestivalI, InfoI } from '@/app/Utils/dataType';
+import { InfoI } from '@/app/Utils/dataType';
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'

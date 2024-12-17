@@ -22,7 +22,7 @@ export default function Search() {
     (state: RootState) => state.festivals
   );
 
-  const { data, error, isLoading } = 
+  const { data, isLoading } = 
   useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString(), codeName, title, date})
 
   const clearInput = () => {

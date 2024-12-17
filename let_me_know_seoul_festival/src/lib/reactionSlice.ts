@@ -15,14 +15,14 @@ const initialState:Reaction = {
   borderHighlight: false,
   showSearchIcon: true,
   showSetting: false,
-  isInfiniteMode: getScrollType(),
+  isInfiniteMode: "scroll",
   isDarkMode: getTheme()
 }
 
 
 
-function getScrollType() {
-  let pageType: any;
+export function getScrollType() {
+  let pageType: string = "";
 
   if (typeof window !== 'undefined') {
     const storedPageType = localStorage.getItem('pageType');

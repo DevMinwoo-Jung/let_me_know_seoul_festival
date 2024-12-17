@@ -7,7 +7,6 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { setEndNumber, setFestivals, setPageNumber, setStartNumber, setTotalCount } from '@/lib/festivalSlice';
 import { useGetFestivalPerPageQuery } from '@/app/api/festival';
-import Loading from '../FestivalItems/Loading';
 import { RootState } from '@/lib/store';
 
 export default function PageMode() {
@@ -17,15 +16,14 @@ export default function PageMode() {
   const { startNumber, endNumber, codeName, title, date, totalCount, currentPage } = useSelector(
     (state: RootState) => state.festivals
   );
+  const dispatch = useDispatch();
+  
+  const { data, error } = 
+  useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString(), codeName, title, date})
   
   const [pageArray, setPageArray] = useState<number[]>([]);
   const totalPageCount = Math.ceil(totalCount / 25);
 
-  const dispatch = useDispatch();
-  
-  const { data, error, isLoading } = 
-  useGetFestivalPerPageQuery({start:startNumber.toString(),end:endNumber.toString(), codeName, title, date})
-  
   useEffect(() => {
     if (data && data.culturalEventInfo && data.culturalEventInfo.row) {
       dispatch(setFestivals({
@@ -99,13 +97,8 @@ export default function PageMode() {
 
 
   if(error) {
-    return <><p>Error occurred..</p></>;
+    return <p>Error occurred..</p>;
   }
-
-  if(isLoading){
-    return <Loading/>;
-  }
-
 
   return (
     <div className='relative min-w-full h-14'> 
@@ -114,9 +107,7 @@ export default function PageMode() {
           <MdArrowBackIos className='cursor-pointer' onClick={setPrevPage}/>
           {
             pageArray.map((ele: number, index: number) => (
-              currentPage === ele 
-                ? <span key={index} className='mx-2 font-extrabold cursor-pointer' onClick={setCurrnetPageNumber}>{ele}</span>
-                : <span key={index} className='mx-2 cursor-pointer' onClick={setCurrnetPageNumber}>{ele}</span>
+                <span key={index} className={`mx-2 ${currentPage === ele ? `font-extrabold`: ''} cursor-pointer`} onClick={setCurrnetPageNumber}>{ele}</span>
             ))
           }
           <MdArrowForwardIos className='cursor-pointer' onClick={setNextPage}/>
